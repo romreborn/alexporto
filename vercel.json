@@ -6,26 +6,10 @@
       "use": "@vercel/static"
     }
   ],
-  "routes": [
+  "rewrites": [
     {
-      "src": "/",
-      "dest": "/porto.html"
-    },
-    {
-      "src": "/project-details",
-      "dest": "/project-details.html"
-    },
-    {
-      "src": "/project-details.html",
-      "dest": "/project-details.html"
-    },
-    {
-      "src": "/(.*\\.(jpg|jpeg|png|gif|svg|css|js|ico|webp))",
-      "dest": "/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/$1"
+      "source": "/project-details",
+      "destination": "/project-details.html"
     }
   ],
   "cleanUrls": true,
