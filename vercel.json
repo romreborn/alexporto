@@ -1,12 +1,33 @@
 {
+  "version": 2,
+  "builds": [
+    {
+      "src": "*.html",
+      "use": "@vercel/static"
+    }
+  ],
   "routes": [
     {
-      "src": "/NEW_modern_dark_portfolio.html",
-      "dest": "/NEW_modern_dark_portfolio.html"
+      "src": "/",
+      "dest": "/porto.html"
+    },
+    {
+      "src": "/project-details",
+      "dest": "/project-details.html"
+    },
+    {
+      "src": "/project-details.html",
+      "dest": "/project-details.html"
+    },
+    {
+      "src": "/(.*\\.(jpg|jpeg|png|gif|svg|css|js|ico|webp))",
+      "dest": "/$1"
     },
     {
       "src": "/(.*)",
       "dest": "/$1"
     }
-  ]
+  ],
+  "cleanUrls": true,
+  "trailingSlash": false
 }
