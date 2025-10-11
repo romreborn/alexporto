@@ -1,8 +1,8 @@
 {
   "routes": [
     {
-      "src": "/project-details.html",
-      "dest": "/project-details.html"
+      "src": "/NEW_modern_dark_portfolio.html",
+      "dest": "/NEW_modern_dark_portfolio.html"
     },
     {
       "src": "/(.*)",
