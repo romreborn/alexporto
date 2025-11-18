@@ -1,0 +1,22 @@
+{
+  "name": "portfolio-website",
+  "version": "1.0.0",
+  "description": "Professional portfolio website built with HTML and Tailwind CSS",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx serve .",
+    "build": "echo 'Build completed - static files ready for deployment'",
+    "deploy": "vercel --prod"
+  },
+  "keywords": [
+    "portfolio",
+    "web-development",
+    "tailwind-css",
+    "vercel"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^14.2.0"
+  }
+}

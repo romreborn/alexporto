@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HR Payroll Management System - Project Details</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/gallery.css">
+    <style>
+        /* Custom animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fadeInUp {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #667eea;
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #764ba2;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white shadow-sm z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="font-bold text-xl text-gray-800">HR Payroll System</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#overview" class="text-gray-700 hover:text-purple-600 transition">Overview</a>
+                    <a href="#features" class="text-gray-700 hover:text-purple-600 transition">Features</a>
+                    <a href="#screenshots" class="text-gray-700 hover:text-purple-600 transition">Screenshots</a>
+                    <a href="#technologies" class="text-gray-700 hover:text-purple-600 transition">Technologies</a>
+                    <a href="index.html#projects" class="text-gray-700 hover:text-purple-600 transition">← Back to Portfolio</a>
+                </div>
+                <button id="mobile-menu-btn" class="md:hidden text-gray-700">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#overview" class="block px-3 py-2 text-gray-700 hover:text-purple-600">Overview</a>
+                <a href="#features" class="block px-3 py-2 text-gray-700 hover:text-purple-600">Features</a>
+                <a href="#screenshots" class="block px-3 py-2 text-gray-700 hover:text-purple-600">Screenshots</a>
+                <a href="#technologies" class="block px-3 py-2 text-gray-700 hover:text-purple-600">Technologies</a>
+                <a href="index.html#projects" class="block px-3 py-2 text-gray-700 hover:text-purple-600">← Back to Portfolio</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-24 pb-16 bg-gradient-to-br from-purple-600 to-indigo-600">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center text-white">
+                <h1 class="text-5xl md:text-6xl font-bold mb-6 animate-fadeInUp">
+                    HR Payroll Management System
+                </h1>
+                <p class="text-xl md:text-2xl mb-8 opacity-90 animate-fadeInUp" style="animation-delay: 0.2s">
+                    Comprehensive HR and Payroll Solution for Modern Businesses
+                </p>
+                <div class="flex flex-wrap justify-center gap-4 mb-12 animate-fadeInUp" style="animation-delay: 0.4s">
+                    <span class="bg-white/20 px-4 py-2 rounded-full text-sm backdrop-blur-sm">Web Application</span>
+                    <span class="bg-white/20 px-4 py-2 rounded-full text-sm backdrop-blur-sm">Enterprise</span>
+                    <span class="bg-white/20 px-4 py-2 rounded-full text-sm backdrop-blur-sm">2024</span>
+                </div>
+                <div class="flex flex-wrap justify-center gap-4 animate-fadeInUp" style="animation-delay: 0.6s">
+                    <button class="bg-white text-purple-600 px-8 py-3 rounded-lg hover:bg-gray-100 transition transform hover:scale-105">
+                        <i class="fas fa-external-link-alt mr-2"></i>Live Demo
+                    </button>
+                    <button class="border-2 border-white text-white px-8 py-3 rounded-lg hover:bg-white/10 transition">
+                        <i class="fab fa-github mr-2"></i>View Code
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Overview Section -->
+    <section id="overview" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6">Project Overview</h2>
+                    <p class="text-lg text-gray-600 mb-6">
+                        The HR Payroll Management System is a comprehensive web-based application designed to streamline
+                        human resources and payroll operations for businesses of all sizes. This powerful solution combines
+                        employee management, attendance tracking, and payroll processing into a single, intuitive platform.
+                    </p>
+                    <p class="text-lg text-gray-600 mb-6">
+                        Built with modern web technologies, the system provides real-time data processing, secure authentication,
+                        and comprehensive reporting capabilities. The user-friendly interface ensures that HR professionals
+                        can efficiently manage all aspects of employee lifecycle and payroll operations.
+                    </p>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-users text-purple-600 text-xl"></i>
+                            <span class="text-gray-700">Employee Management</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-clock text-purple-600 text-xl"></i>
+                            <span class="text-gray-700">Attendance Tracking</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-dollar-sign text-purple-600 text-xl"></i>
+                            <span class="text-gray-700">Payroll Processing</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-chart-bar text-purple-600 text-xl"></i>
+                            <span class="text-gray-700">Comprehensive Reports</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gradient-to-br from-purple-100 to-indigo-100 rounded-2xl p-8">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">Key Metrics</h3>
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-700">Employee Efficiency</span>
+                                <span class="text-purple-600 font-semibold">95%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-3">
+                                <div class="bg-purple-600 h-3 rounded-full" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-700">Payroll Accuracy</span>
+                                <span class="text-purple-600 font-semibold">99%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-3">
+                                <div class="bg-purple-600 h-3 rounded-full" style="width: 99%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-700">Time Savings</span>
+                                <span class="text-purple-600 font-semibold">80%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-3">
+                                <div class="bg-purple-600 h-3 rounded-full" style="width: 80%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Core Features</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Comprehensive functionality to manage all aspects of HR and payroll operations
+                </p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl p-6 shadow-lg card-hover">
+                    <div class="w-16 h-16 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-user-shield text-purple-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Secure Authentication</h3>
+                    <p class="text-gray-600">
+                        Role-based access control with secure login system ensuring data privacy and security.
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-xl p-6 shadow-lg card-hover">
+                    <div class="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-users text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Employee Database</h3>
+                    <p class="text-gray-600">
+                        Complete employee information management with profiles, documents, and employment history.
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-xl p-6 shadow-lg card-hover">
+                    <div class="w-16 h-16 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-calendar-check text-green-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Attendance System</h3>
+                    <p class="text-gray-600">
+                        Real-time attendance tracking with check-in/check-out functionality and leave management.
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-xl p-6 shadow-lg card-hover">
+                    <div class="w-16 h-16 bg-orange-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-hand-holding-usd text-orange-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Cash Advance</h3>
+                    <p class="text-gray-600">
+                        Employee cash advance request system with approval workflows and repayment tracking.
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-xl p-6 shadow-lg card-hover">
+                    <div class="w-16 h-16 bg-red-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-calculator text-red-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Payroll Processing</h3>
+                    <p class="text-gray-600">
+                        Automated salary calculations including deductions, bonuses, and tax computations.
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-xl p-6 shadow-lg card-hover">
+                    <div class="w-16 h-16 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-file-invoice text-indigo-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Pay Slip Generation</h3>
+                    <p class="text-gray-600">
+                        Automated payslip generation with detailed salary breakdown and printable format.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Screenshots Section -->
+    <section id="screenshots" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Application Screenshots</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Take a visual tour of the HR Payroll Management System interface
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" onclick="openModal('screenshots/hr_payroll/Login.png')">
+                    <img src="screenshots/hr_payroll/Login.png" alt="Login Page" class="w-full h-64 object-cover group-hover:scale-110 transition duration-300">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition duration-300 flex items-center justify-center">
+                        <div class="text-white opacity-0 group-hover:opacity-100 transition duration-300 text-center">
+                            <i class="fas fa-search-plus text-2xl mb-2"></i>
+                            <p class="text-sm">Click to enlarge</p>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-gray-50">
+                        <h4 class="font-semibold text-gray-900">Secure Login System</h4>
+                        <p class="text-gray-600 text-sm">User authentication with role-based access control</p>
+                    </div>
+                </div>
+
+                <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" onclick="openModal('screenshots/hr_payroll/Input_Karyawan.png')">
+                    <img src="screenshots/hr_payroll/Input_Karyawan.png" alt="Employee Management" class="w-full h-64 object-cover group-hover:scale-110 transition duration-300">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition duration-300 flex items-center justify-center">
+                        <div class="text-white opacity-0 group-hover:opacity-100 transition duration-300 text-center">
+                            <i class="fas fa-search-plus text-2xl mb-2"></i>
+                            <p class="text-sm">Click to enlarge</p>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-gray-50">
+                        <h4 class="font-semibold text-gray-900">Employee Management</h4>
+                        <p class="text-gray-600 text-sm">Complete employee data management system</p>
+                    </div>
+                </div>
+
+                <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" onclick="openModal('screenshots/hr_payroll/Absensi_Karyawan.png')">
+                    <img src="screenshots/hr_payroll/Absensi_Karyawan.png" alt="Attendance Tracking" class="w-full h-64 object-cover group-hover:scale-110 transition duration-300">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition duration-300 flex items-center justify-center">
+                        <div class="text-white opacity-0 group-hover:opacity-100 transition duration-300 text-center">
+                            <i class="fas fa-search-plus text-2xl mb-2"></i>
+                            <p class="text-sm">Click to enlarge</p>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-gray-50">
+                        <h4 class="font-semibold text-gray-900">Attendance Tracking</h4>
+                        <p class="text-gray-600 text-sm">Real-time employee attendance monitoring</p>
+                    </div>
+                </div>
+
+                <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" onclick="openModal('screenshots/hr_payroll/Input_kasbon - 1.png')">
+                    <img src="screenshots/hr_payroll/Input_kasbon - 1.png" alt="Cash Advance Management" class="w-full h-64 object-cover group-hover:scale-110 transition duration-300">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition duration-300 flex items-center justify-center">
+                        <div class="text-white opacity-0 group-hover:opacity-100 transition duration-300 text-center">
+                            <i class="fas fa-search-plus text-2xl mb-2"></i>
+                            <p class="text-sm">Click to enlarge</p>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-gray-50">
+                        <h4 class="font-semibold text-gray-900">Cash Advance Request</h4>
+                        <p class="text-gray-600 text-sm">Employee cash advance request form</p>
+                    </div>
+                </div>
+
+                <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" onclick="openModal('screenshots/hr_payroll/form_pembayaran_gaji.png')">
+                    <img src="screenshots/hr_payroll/form_pembayaran_gaji.png" alt="Payroll Processing" class="w-full h-64 object-cover group-hover:scale-110 transition duration-300">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition duration-300 flex items-center justify-center">
+                        <div class="text-white opacity-0 group-hover:opacity-100 transition duration-300 text-center">
+                            <i class="fas fa-search-plus text-2xl mb-2"></i>
+                            <p class="text-sm">Click to enlarge</p>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-gray-50">
+                        <h4 class="font-semibold text-gray-900">Payroll Processing</h4>
+                        <p class="text-gray-600 text-sm">Salary calculation and payment form</p>
+                    </div>
+                </div>
+
+                <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" onclick="openModal('screenshots/hr_payroll/Laporan_Gaji.png')">
+                    <img src="screenshots/hr_payroll/Laporan_Gaji.png" alt="Payroll Reports" class="w-full h-64 object-cover group-hover:scale-110 transition duration-300">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition duration-300 flex items-center justify-center">
+                        <div class="text-white opacity-0 group-hover:opacity-100 transition duration-300 text-center">
+                            <i class="fas fa-search-plus text-2xl mb-2"></i>
+                            <p class="text-sm">Click to enlarge</p>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-gray-50">
+                        <h4 class="font-semibold text-gray-900">Payroll Reports</h4>
+                        <p class="text-gray-600 text-sm">Comprehensive payroll reporting dashboard</p>
+                    </div>
+                </div>
+
+                <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" onclick="openModal('screenshots/hr_payroll/master_kalender.png')">
+                    <img src="screenshots/hr_payroll/master_kalender.png" alt="Calendar Management" class="w-full h-64 object-cover group-hover:scale-110 transition duration-300">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition duration-300 flex items-center justify-center">
+                        <div class="text-white opacity-0 group-hover:opacity-100 transition duration-300 text-center">
+                            <i class="fas fa-search-plus text-2xl mb-2"></i>
+                            <p class="text-sm">Click to enlarge</p>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-gray-50">
+                        <h4 class="font-semibold text-gray-900">Calendar Management</h4>
+                        <p class="text-gray-600 text-sm">Company calendar and holidays management</p>
+                    </div>
+                </div>
+
+                <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" onclick="openModal('screenshots/hr_payroll/Input_kasbon - 2.png')">
+                    <img src="screenshots/hr_payroll/Input_kasbon - 2.png" alt="Cash Advance List" class="w-full h-64 object-cover group-hover:scale-110 transition duration-300">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition duration-300 flex items-center justify-center">
+                        <div class="text-white opacity-0 group-hover:opacity-100 transition duration-300 text-center">
+                            <i class="fas fa-search-plus text-2xl mb-2"></i>
+                            <p class="text-sm">Click to enlarge</p>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-gray-50">
+                        <h4 class="font-semibold text-gray-900">Cash Advance List</h4>
+                        <p class="text-gray-600 text-sm">View and manage cash advance requests</p>
+                    </div>
+                </div>
+
+                <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" onclick="openModal('screenshots/hr_payroll/Print_Gaji.png')">
+                    <img src="screenshots/hr_payroll/Print_Gaji.png" alt="Print Payroll" class="w-full h-64 object-cover group-hover:scale-110 transition duration-300">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition duration-300 flex items-center justify-center">
+                        <div class="text-white opacity-0 group-hover:opacity-100 transition duration-300 text-center">
+                            <i class="fas fa-search-plus text-2xl mb-2"></i>
+                            <p class="text-sm">Click to enlarge</p>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-gray-50">
+                        <h4 class="font-semibold text-gray-900">Print Payroll</h4>
+                        <p class="text-gray-600 text-sm">Printable payroll reports and payslips</p>
+                    </div>
+                </div>
+
+                <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" onclick="openModal('screenshots/hr_payroll/Laporan_Absensi.png')">
+                    <img src="screenshots/hr_payroll/Laporan_Absensi.png" alt="Attendance Reports" class="w-full h-64 object-cover group-hover:scale-110 transition duration-300">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition duration-300 flex items-center justify-center">
+                        <div class="text-white opacity-0 group-hover:opacity-100 transition duration-300 text-center">
+                            <i class="fas fa-search-plus text-2xl mb-2"></i>
+                            <p class="text-sm">Click to enlarge</p>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-gray-50">
+                        <h4 class="font-semibold text-gray-900">Attendance Reports</h4>
+                        <p class="text-gray-600 text-sm">Detailed attendance reporting and analytics</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technologies Section -->
+    <section id="technologies" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Technologies Used</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Built with modern and reliable web technologies
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
+                <div class="bg-white rounded-xl p-6 text-center shadow-lg">
+                    <i class="fab fa-php text-4xl text-purple-600 mb-4"></i>
+                    <h3 class="font-semibold text-gray-900">PHP</h3>
+                    <p class="text-gray-600 text-sm mt-2">Backend Logic</p>
+                </div>
+
+                <div class="bg-white rounded-xl p-6 text-center shadow-lg">
+                    <i class="fas fa-database text-4xl text-blue-600 mb-4"></i>
+                    <h3 class="font-semibold text-gray-900">MySQL</h3>
+                    <p class="text-gray-600 text-sm mt-2">Database</p>
+                </div>
+
+                <div class="bg-white rounded-xl p-6 text-center shadow-lg">
+                    <i class="fab fa-js text-4xl text-yellow-500 mb-4"></i>
+                    <h3 class="font-semibold text-gray-900">JavaScript</h3>
+                    <p class="text-gray-600 text-sm mt-2">Frontend Interactivity</p>
+                </div>
+
+                <div class="bg-white rounded-xl p-6 text-center shadow-lg">
+                    <i class="fab fa-bootstrap text-4xl text-purple-700 mb-4"></i>
+                    <h3 class="font-semibold text-gray-900">Bootstrap</h3>
+                    <p class="text-gray-600 text-sm mt-2">UI Framework</p>
+                </div>
+
+                <div class="bg-white rounded-xl p-6 text-center shadow-lg">
+                    <i class="fas fa-exchange-alt text-4xl text-green-600 mb-4"></i>
+                    <h3 class="font-semibold text-gray-900">AJAX</h3>
+                    <p class="text-gray-600 text-sm mt-2">Dynamic Content</p>
+                </div>
+            </div>
+
+            <div class="mt-16">
+                <h3 class="text-2xl font-bold text-gray-900 mb-8 text-center">Technical Specifications</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="bg-white rounded-xl p-6 shadow-lg">
+                        <h4 class="font-semibold text-gray-900 mb-4">Frontend</h4>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>HTML5 & CSS3</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Bootstrap 4</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>JavaScript ES6+</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>jQuery</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white rounded-xl p-6 shadow-lg">
+                        <h4 class="font-semibold text-gray-900 mb-4">Backend</h4>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>PHP 7.4+</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>RESTful API</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>MVC Architecture</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Session Management</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white rounded-xl p-6 shadow-lg">
+                        <h4 class="font-semibold text-gray-900 mb-4">Database</h4>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>MySQL 8.0</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Relational Schema</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Stored Procedures</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Data Integrity</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white rounded-xl p-6 shadow-lg">
+                        <h4 class="font-semibold text-gray-900 mb-4">Security</h4>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Role-Based Access</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Password Hashing</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>SQL Injection Protection</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>CSRF Protection</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section class="py-20 bg-gradient-to-r from-purple-600 to-indigo-600">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl font-bold text-white mb-6">Interested in This Project?</h2>
+            <p class="text-xl text-white opacity-90 mb-8">
+                Get in touch to discuss how this HR Payroll Management System can benefit your organization
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="index.html#contact" class="bg-white text-purple-600 px-8 py-3 rounded-lg hover:bg-gray-100 transition transform hover:scale-105">
+                    <i class="fas fa-envelope mr-2"></i>Contact Me
+                </a>
+                <a href="index.html#projects" class="border-2 border-white text-white px-8 py-3 rounded-lg hover:bg-white/10 transition">
+                    <i class="fas fa-arrow-left mr-2"></i>View More Projects
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <div class="flex justify-center space-x-6 mb-8">
+                    <a href="#" class="text-gray-400 hover:text-white transition text-xl">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition text-xl">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition text-xl">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition text-xl">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+                <p class="text-gray-400">
+                    © 2024 HR Payroll Management System. Part of Portfolio Showcase.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Image Modal -->
+    <div id="imageModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="modalImage">
+        <div id="caption" class="caption"></div>
+    </div>
+
+    <script src="assets/js/gallery.js"></script>
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking on a link
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Modal functionality
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById("modalImage");
+        const caption = document.getElementById("caption");
+        const closeModal = document.getElementsByClassName("close")[0];
+
+        function openModal(imageSrc) {
+            modal.style.display = "block";
+            modalImg.src = imageSrc;
+            caption.innerHTML = imageSrc.split('/').pop().replace('.png', '').replace(/_/g, ' ');
+        }
+
+        closeModal.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // Close modal when clicking outside of the image
+        modal.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                modal.style.display = "none";
+            }
+        });
+
+        // Add smooth scroll behavior for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Information Display & Announcement Management System - Project Details</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/gallery.css">
+    <style>
+        /* Custom animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fadeInUp {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #f97316 0%, #dc2626 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, #f97316 0%, #dc2626 100%);
+        }
+
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #f97316;
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #dc2626;
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 900px;
+            max-height: 90vh;
+            object-fit: contain;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .caption {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+            text-align: center;
+            color: #ccc;
+            padding: 10px 0;
+            height: 150px;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        @media only screen and (max-width: 700px){
+            .modal-content {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white shadow-sm z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="font-bold text-xl text-gray-800">Digital Display System</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#overview" class="text-gray-700 hover:text-orange-600 transition">Overview</a>
+                    <a href="#features" class="text-gray-700 hover:text-orange-600 transition">Features</a>
+                    <a href="#screenshots" class="text-gray-700 hover:text-orange-600 transition">Screenshots</a>
+                    <a href="#technologies" class="text-gray-700 hover:text-orange-600 transition">Technologies</a>
+                    <a href="index.html#projects" class="text-gray-700 hover:text-orange-600 transition">← Back to Portfolio</a>
+                </div>
+                <button id="mobile-menu-btn" class="md:hidden text-gray-700">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#overview" class="block px-3 py-2 text-gray-700 hover:text-orange-600">Overview</a>
+                <a href="#features" class="block px-3 py-2 text-gray-700 hover:text-orange-600">Features</a>
+                <a href="#screenshots" class="block px-3 py-2 text-gray-700 hover:text-orange-600">Screenshots</a>
+                <a href="#technologies" class="block px-3 py-2 text-gray-700 hover:text-orange-600">Technologies</a>
+                <a href="index.html#projects" class="block px-3 py-2 text-gray-700 hover:text-orange-600">← Back to Portfolio</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-24 pb-16 bg-gradient-to-br from-orange-600 to-red-600">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center text-white">
+                <h1 class="text-5xl md:text-6xl font-bold mb-6 animate-fadeInUp">
+                    Digital Information Display System
+                </h1>
+                <p class="text-xl md:text-2xl mb-8 opacity-90 animate-fadeInUp" style="animation-delay: 0.2s">
+                    Comprehensive Digital Signage Platform for Announcement Management
+                </p>
+                <div class="flex flex-wrap justify-center gap-4 mb-12 animate-fadeInUp" style="animation-delay: 0.4s">
+                    <span class="bg-white/20 px-4 py-2 rounded-full text-sm backdrop-blur-sm">Desktop Application</span>
+                    <span class="bg-white/20 px-4 py-2 rounded-full text-sm backdrop-blur-sm">Digital Signage</span>
+                    <span class="bg-white/20 px-4 py-2 rounded-full text-sm backdrop-blur-sm">2023</span>
+                </div>
+                <div class="flex flex-wrap justify-center gap-4 animate-fadeInUp" style="animation-delay: 0.6s">
+                    <button class="bg-white text-orange-600 px-8 py-3 rounded-lg hover:bg-gray-100 transition transform hover:scale-105">
+                        <i class="fas fa-external-link-alt mr-2"></i>Live Demo
+                    </button>
+                    <button class="border-2 border-white text-white px-8 py-3 rounded-lg hover:bg-white/10 transition">
+                        <i class="fab fa-github mr-2"></i>View Code
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Overview Section -->
+    <section id="overview" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6">Project Overview</h2>
+                    <p class="text-lg text-gray-600 mb-6">
+                        The Digital Information Display & Announcement Management System is a comprehensive digital signage platform
+                        designed to manage announcements, schedules, and multimedia content across multiple displays. This powerful
+                        desktop application provides centralized control for all digital communication needs.
+                    </p>
+                    <p class="text-lg text-gray-600 mb-6">
+                        Built with modern desktop application technologies, the system provides real-time content management,
+                        user authentication, and comprehensive scheduling capabilities. The intuitive interface ensures that administrators
+                        can efficiently manage all aspects of digital signage operations from a single platform.
+                    </p>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-tv text-orange-600 text-xl"></i>
+                            <span class="text-gray-700">Multi-Display Support</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-bullhorn text-orange-600 text-xl"></i>
+                            <span class="text-gray-700">Announcement Management</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-calendar text-orange-600 text-xl"></i>
+                            <span class="text-gray-700">Schedule Management</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-users text-orange-600 text-xl"></i>
+                            <span class="text-gray-700">User Management</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gradient-to-br from-orange-100 to-red-100 rounded-2xl p-8">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">Key Metrics</h3>
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-700">Display Coverage</span>
+                                <span class="text-orange-600 font-semibold">100%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-3">
+                                <div class="bg-orange-600 h-3 rounded-full" style="width: 100%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-700">Content Update Speed</span>
+                                <span class="text-orange-600 font-semibold">95%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-3">
+                                <div class="bg-orange-600 h-3 rounded-full" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-700">System Reliability</span>
+                                <span class="text-orange-600 font-semibold">98%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-3">
+                                <div class="bg-orange-600 h-3 rounded-full" style="width: 98%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Core Features</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Comprehensive functionality to manage all aspects of digital signage operations
+                </p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl p-6 shadow-lg card-hover">
+                    <div class="w-16 h-16 bg-orange-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-desktop text-orange-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Desktop Application</h3>
+                    <p class="text-gray-600">
+                        Native Windows desktop application with WPF interface for optimal performance and user experience.
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-xl p-6 shadow-lg card-hover">
+                    <div class="w-16 h-16 bg-red-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-user-shield text-red-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">User Management</h3>
+                    <p class="text-gray-600">
+                        Complete user authentication and authorization system with role-based access control.
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-xl p-6 shadow-lg card-hover">
+                    <div class="w-16 h-16 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-newspaper text-purple-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Announcement Management</h3>
+                    <p class="text-gray-600">
+                        Create, edit, and manage announcements with rich text formatting and multimedia support.
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-xl p-6 shadow-lg card-hover">
+                    <div class="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-clock text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Schedule Management</h3>
+                    <p class="text-gray-600">
+                        Advanced scheduling system with date/time-based content delivery and automated transitions.
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-xl p-6 shadow-lg card-hover">
+                    <div class="w-16 h-16 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-text-width text-green-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Running Text</h3>
+                    <p class="text-gray-600">
+                        Dynamic scrolling text functionality for campaign messages and important announcements.
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-xl p-6 shadow-lg card-hover">
+                    <div class="w-16 h-16 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-tv text-indigo-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Display Management</h3>
+                    <p class="text-gray-600">
+                        Multi-screen display management with real-time content synchronization and monitoring.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Screenshots Section -->
+    <section id="screenshots" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Application Screenshots</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Take a visual tour of the Digital Information Display System interface
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Login Screen -->
+                <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" onclick="openModal('screenshots/digital_display/Login.png')">
+                    <img src="screenshots/digital_display/Login.png" alt="Login Screen" class="w-full h-64 object-cover group-hover:scale-110 transition duration-300">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition duration-300 flex items-center justify-center">
+                        <div class="text-white opacity-0 group-hover:opacity-100 transition duration-300 text-center">
+                            <i class="fas fa-search-plus text-2xl mb-2"></i>
+                            <p class="text-sm">Click to enlarge</p>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-gray-50">
+                        <h4 class="font-semibold text-gray-900">Login Screen</h4>
+                        <p class="text-gray-600 text-sm">Secure user authentication interface</p>
+                    </div>
+                </div>
+
+                <!-- Home Dashboard -->
+                <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" onclick="openModal('screenshots/digital_display/Home.png')">
+                    <img src="screenshots/digital_display/Home.png" alt="Home Dashboard" class="w-full h-64 object-cover group-hover:scale-110 transition duration-300">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition duration-300 flex items-center justify-center">
+                        <div class="text-white opacity-0 group-hover:opacity-100 transition duration-300 text-center">
+                            <i class="fas fa-search-plus text-2xl mb-2"></i>
+                            <p class="text-sm">Click to enlarge</p>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-gray-50">
+                        <h4 class="font-semibold text-gray-900">Home Dashboard</h4>
+                        <p class="text-gray-600 text-sm">Main dashboard with system overview</p>
+                    </div>
+                </div>
+
+                <!-- Input Information -->
+                <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" onclick="openModal('screenshots/digital_display/Input_Informasi.png')">
+                    <img src="screenshots/digital_display/Input_Informasi.png" alt="Input Information" class="w-full h-64 object-cover group-hover:scale-110 transition duration-300">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition duration-300 flex items-center justify-center">
+                        <div class="text-white opacity-0 group-hover:opacity-100 transition duration-300 text-center">
+                            <i class="fas fa-search-plus text-2xl mb-2"></i>
+                            <p class="text-sm">Click to enlarge</p>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-gray-50">
+                        <h4 class="font-semibold text-gray-900">Input Information</h4>
+                        <p class="text-gray-600 text-sm">Create and edit announcements</p>
+                    </div>
+                </div>
+
+                <!-- Edit Information 1 -->
+                <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" onclick="openModal('screenshots/digital_display/Ubah_Informasi_1.png')">
+                    <img src="screenshots/digital_display/Ubah_Informasi_1.png" alt="Edit Information" class="w-full h-64 object-cover group-hover:scale-110 transition duration-300">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition duration-300 flex items-center justify-center">
+                        <div class="text-white opacity-0 group-hover:opacity-100 transition duration-300 text-center">
+                            <i class="fas fa-search-plus text-2xl mb-2"></i>
+                            <p class="text-sm">Click to enlarge</p>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-gray-50">
+                        <h4 class="font-semibold text-gray-900">Edit Information</h4>
+                        <p class="text-gray-600 text-sm">Edit existing announcements</p>
+                    </div>
+                </div>
+
+                <!-- Edit Information 2 -->
+                <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" onclick="openModal('screenshots/digital_display/Ubah_Informasi_2.png')">
+                    <img src="screenshots/digital_display/Ubah_Informasi_2.png" alt="Advanced Editing" class="w-full h-64 object-cover group-hover:scale-110 transition duration-300">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition duration-300 flex items-center justify-center">
+                        <div class="text-white opacity-0 group-hover:opacity-100 transition duration-300 text-center">
+                            <i class="fas fa-search-plus text-2xl mb-2"></i>
+                            <p class="text-sm">Click to enlarge</p>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-gray-50">
+                        <h4 class="font-semibold text-gray-900">Advanced Editing</h4>
+                        <p class="text-gray-600 text-sm">Advanced content editing options</p>
+                    </div>
+                </div>
+
+                <!-- Campaign Text -->
+                <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" onclick="openModal('screenshots/digital_display/Tambah_RunningText - Campaign_Text.png')">
+                    <img src="screenshots/digital_display/Tambah_RunningText%20-%20Campaign_Text.png" alt="Campaign Text" class="w-full h-64 object-cover group-hover:scale-110 transition duration-300">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition duration-300 flex items-center justify-center">
+                        <div class="text-white opacity-0 group-hover:opacity-100 transition duration-300 text-center">
+                            <i class="fas fa-search-plus text-2xl mb-2"></i>
+                            <p class="text-sm">Click to enlarge</p>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-gray-50">
+                        <h4 class="font-semibold text-gray-900">Campaign Text</h4>
+                        <p class="text-gray-600 text-sm">Create scrolling campaign text</p>
+                    </div>
+                </div>
+
+                <!-- Display View -->
+                <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" onclick="openModal('screenshots/digital_display/Tampilan_Layar.png')">
+                    <img src="screenshots/digital_display/Tampilan_Layar.png" alt="Display View" class="w-full h-64 object-cover group-hover:scale-110 transition duration-300">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition duration-300 flex items-center justify-center">
+                        <div class="text-white opacity-0 group-hover:opacity-100 transition duration-300 text-center">
+                            <i class="fas fa-search-plus text-2xl mb-2"></i>
+                            <p class="text-sm">Click to enlarge</p>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-gray-50">
+                        <h4 class="font-semibold text-gray-900">Display View</h4>
+                        <p class="text-gray-600 text-sm">Live display screen showing content</p>
+                    </div>
+                </div>
+
+                <!-- User Management -->
+                <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" onclick="openModal('screenshots/digital_display/2017_07_24_20_06_11_BuatUser.png')">
+                    <img src="screenshots/digital_display/2017_07_24_20_06_11_BuatUser.png" alt="User Management" class="w-full h-64 object-cover group-hover:scale-110 transition duration-300">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition duration-300 flex items-center justify-center">
+                        <div class="text-white opacity-0 group-hover:opacity-100 transition duration-300 text-center">
+                            <i class="fas fa-search-plus text-2xl mb-2"></i>
+                            <p class="text-sm">Click to enlarge</p>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-gray-50">
+                        <h4 class="font-semibold text-gray-900">User Management</h4>
+                        <p class="text-gray-600 text-sm">Create and manage user accounts</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technologies Section -->
+    <section id="technologies" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Technologies Used</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Built with modern Windows desktop application technologies
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
+                <div class="bg-white rounded-xl p-6 text-center shadow-lg">
+                    <i class="fas fa-desktop text-4xl text-purple-600 mb-4"></i>
+                    <h3 class="font-semibold text-gray-900">VB.Net</h3>
+                    <p class="text-gray-600 text-sm mt-2">Desktop Development</p>
+                </div>
+
+                <div class="bg-white rounded-xl p-6 text-center shadow-lg">
+                    <i class="fas fa-layer-group text-4xl text-blue-600 mb-4"></i>
+                    <h3 class="font-semibold text-gray-900">WPF</h3>
+                    <p class="text-gray-600 text-sm mt-2">UI Framework</p>
+                </div>
+
+                <div class="bg-white rounded-xl p-6 text-center shadow-lg">
+                    <i class="fas fa-code text-4xl text-orange-600 mb-4"></i>
+                    <h3 class="font-semibold text-gray-900">C#</h3>
+                    <p class="text-gray-600 text-sm mt-2">Programming</p>
+                </div>
+
+                <div class="bg-white rounded-xl p-6 text-center shadow-lg">
+                    <i class="fas fa-database text-4xl text-green-600 mb-4"></i>
+                    <h3 class="font-semibold text-gray-900">MSSQL</h3>
+                    <p class="text-gray-600 text-sm mt-2">Database</p>
+                </div>
+
+                <div class="bg-white rounded-xl p-6 text-center shadow-lg">
+                    <i class="fas fa-palette text-4xl text-red-600 mb-4"></i>
+                    <h3 class="font-semibold text-gray-900">XAML</h3>
+                    <p class="text-gray-600 text-sm mt-2">UI Design</p>
+                </div>
+            </div>
+
+            <div class="mt-16">
+                <h3 class="text-2xl font-bold text-gray-900 mb-8 text-center">Technical Specifications</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="bg-white rounded-xl p-6 shadow-lg">
+                        <h4 class="font-semibold text-gray-900 mb-4">Frontend</h4>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>WPF Application</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>XAML UI Design</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Windows Forms</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>MVVM Pattern</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white rounded-xl p-6 shadow-lg">
+                        <h4 class="font-semibold text-gray-900 mb-4">Backend</h4>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>VB.NET Core</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>C# Libraries</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>.NET Framework</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Entity Framework</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white rounded-xl p-6 shadow-lg">
+                        <h4 class="font-semibold text-gray-900 mb-4">Database</h4>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Microsoft SQL Server</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Relational Schema</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Stored Procedures</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Data Integrity</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white rounded-xl p-6 shadow-lg">
+                        <h4 class="font-semibold text-gray-900 mb-4">Security</h4>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Role-Based Access</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Password Hashing</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>SQL Injection Protection</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Authentication System</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section class="py-20 bg-gradient-to-r from-orange-600 to-red-600">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl font-bold text-white mb-6">Interested in This Project?</h2>
+            <p class="text-xl text-white opacity-90 mb-8">
+                Get in touch to discuss how this Digital Information Display System can benefit your organization
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="index.html#contact" class="bg-white text-orange-600 px-8 py-3 rounded-lg hover:bg-gray-100 transition transform hover:scale-105">
+                    <i class="fas fa-envelope mr-2"></i>Contact Me
+                </a>
+                <a href="index.html#projects" class="border-2 border-white text-white px-8 py-3 rounded-lg hover:bg-white/10 transition">
+                    <i class="fas fa-arrow-left mr-2"></i>View More Projects
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <div class="flex justify-center space-x-6 mb-8">
+                    <a href="#" class="text-gray-400 hover:text-white transition text-xl">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition text-xl">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition text-xl">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition text-xl">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+                <p class="text-gray-400">
+                    © 2024 Digital Information Display System. Part of Portfolio Showcase.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Image Modal -->
+    <div id="imageModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="modalImage">
+        <div id="caption" class="caption"></div>
+    </div>
+
+    <script>
+        // Modal functionality
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+        const caption = document.getElementById('caption');
+        const closeModal = document.querySelector('.close');
+
+        function openModal(imageSrc) {
+            modal.style.display = "block";
+            modalImg.src = imageSrc;
+            caption.innerHTML = imageSrc.split('/').pop().replace('.png', '').replace(/_/g, ' ').replace(/%20/g, ' ');
+        }
+
+        closeModal.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // Close modal when clicking outside of the image
+        modal.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                modal.style.display = "none";
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking on a link
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Add smooth scroll behavior for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
