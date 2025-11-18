@@ -4,11 +4,537 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>School Academic Information System - Project Details</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="assets/css/gallery.css">
     <style>
-        /* Custom animations */
+        /* CSS Variables - Green/Emerald Theme */
+        :root {
+            --primary-color: #10b981;
+            --secondary-color: #059669;
+            --accent-color: #f7fafc;
+            --text-dark: #2d3748;
+            --text-light: #718096;
+            --white: #ffffff;
+            --gray-light: #f7fafc;
+            --gray-medium: #e2e8f0;
+            --gray-dark: #4a5568;
+            --shadow-light: rgba(0, 0, 0, 0.1);
+            --shadow-medium: rgba(0, 0, 0, 0.15);
+            --shadow-heavy: rgba(0, 0, 0, 0.2);
+            --border-radius: 12px;
+            --border-radius-large: 20px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--gray-light);
+            overflow-x: hidden;
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--gray-light);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary-color);
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--white);
+            box-shadow: 0 2px 10px var(--shadow-light);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0.5rem;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--text-dark);
+            margin: 3px 0;
+            transition: var(--transition);
+            border-radius: 2px;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 8rem 2rem 4rem;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: var(--white);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -50%;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: translateX(100%);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .hero-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 3rem;
+        }
+
+        .tag {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: 2px solid transparent;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: var(--white);
+            color: var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px var(--shadow-medium);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border-color: var(--white);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 5rem 0;
+        }
+
+        .section-alt {
+            background: var(--white);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            text-align: center;
+            color: var(--text-light);
+            margin-bottom: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Grid Layouts */
+        .grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        .grid-4 {
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        }
+
+        .grid-5 {
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        }
+
+        /* Cards */
+        .card {
+            background: var(--white);
+            border-radius: var(--border-radius-large);
+            padding: 2rem;
+            box-shadow: 0 4px 15px var(--shadow-light);
+            transition: var(--transition);
+            border: 1px solid var(--gray-medium);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px var(--shadow-medium);
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: var(--border-radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .card-text {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Feature Cards */
+        .feature-card {
+            text-align: center;
+        }
+
+        .feature-card .card-icon {
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+        }
+
+        /* Progress Bars */
+        .progress-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: var(--gray-medium);
+            border-radius: 50px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50px;
+            transition: width 1s ease;
+        }
+
+        /* Screenshots Gallery */
+        .screenshot-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--border-radius-large);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .screenshot-card:hover {
+            transform: scale(1.02);
+        }
+
+        .screenshot-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .screenshot-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .screenshot-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .screenshot-card:hover .screenshot-overlay {
+            opacity: 1;
+        }
+
+        .screenshot-info {
+            background: var(--white);
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .screenshot-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .screenshot-desc {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Tech Stack */
+        .tech-card {
+            text-align: center;
+            padding: 2rem 1.5rem;
+        }
+
+        .tech-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .tech-name {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .tech-desc {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Lists */
+        .check-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .check-list li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            color: var(--text-light);
+        }
+
+        .check-list li::before {
+            content: '✓';
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            text-align: center;
+            padding: 5rem 2rem;
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-text {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--text-dark);
+            color: var(--white);
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .social-links a {
+            color: var(--white);
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        /* Animations */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -24,47 +550,82 @@
             animation: fadeInUp 0.6s ease-out;
         }
 
-        .gradient-text {
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background-color: var(--white);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px var(--shadow-light);
+                padding: 2rem 0;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .grid-2,
+            .grid-3,
+            .grid-4,
+            .grid-5 {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 200px;
+                justify-content: center;
+            }
         }
 
-        .hero-gradient {
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        /* Mobile menu animation */
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
         }
 
-        .card-hover {
-            transition: all 0.3s ease;
+        .hamburger.active span:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
         }
 
-        .card-hover:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        .hamburger.active span:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
         }
 
-        /* Smooth scrolling */
-        html {
-            scroll-behavior: smooth;
+        /* Scroll animations */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
         }
 
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #10b981;
-            border-radius: 5px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #059669;
+        .scroll-reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* Modal styles */
@@ -132,127 +693,115 @@
         }
     </style>
 </head>
-<body class="bg-gray-50">
+<body>
     <!-- Navigation -->
-    <nav class="fixed w-full bg-white shadow-sm z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center py-4">
-                <div class="font-bold text-xl text-gray-800">School Academic System</div>
-                <div class="hidden md:flex space-x-8">
-                    <a href="#overview" class="text-gray-700 hover:text-green-600 transition">Overview</a>
-                    <a href="#features" class="text-gray-700 hover:text-green-600 transition">Features</a>
-                    <a href="#screenshots" class="text-gray-700 hover:text-green-600 transition">Screenshots</a>
-                    <a href="#technologies" class="text-gray-700 hover:text-green-600 transition">Technologies</a>
-                    <a href="index.html#projects" class="text-gray-700 hover:text-green-600 transition">← Back to Portfolio</a>
-                </div>
-                <button id="mobile-menu-btn" class="md:hidden text-gray-700">
-                    <i class="fas fa-bars text-xl"></i>
-                </button>
-            </div>
-        </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
-            <div class="px-2 pt-2 pb-3 space-y-1">
-                <a href="#overview" class="block px-3 py-2 text-gray-700 hover:text-green-600">Overview</a>
-                <a href="#features" class="block px-3 py-2 text-gray-700 hover:text-green-600">Features</a>
-                <a href="#screenshots" class="block px-3 py-2 text-gray-700 hover:text-green-600">Screenshots</a>
-                <a href="#technologies" class="block px-3 py-2 text-gray-700 hover:text-green-600">Technologies</a>
-                <a href="index.html#projects" class="block px-3 py-2 text-gray-700 hover:text-green-600">← Back to Portfolio</a>
-            </div>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-brand">School Academic System</a>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#overview" class="nav-link">Overview</a></li>
+                <li><a href="#features" class="nav-link">Features</a></li>
+                <li><a href="#screenshots" class="nav-link">Screenshots</a></li>
+                <li><a href="#technologies" class="nav-link">Technologies</a></li>
+                <li><a href="index.html#projects" class="nav-link">← Back to Portfolio</a></li>
+            </ul>
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="pt-24 pb-16 bg-gradient-to-br from-green-600 to-emerald-600">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center text-white">
-                <h1 class="text-5xl md:text-6xl font-bold mb-6 animate-fadeInUp">
-                    School Academic Information System
-                </h1>
-                <p class="text-xl md:text-2xl mb-8 opacity-90 animate-fadeInUp" style="animation-delay: 0.2s">
-                    Comprehensive Academic Management System for Educational Institutions
-                </p>
-                <div class="flex flex-wrap justify-center gap-4 mb-12 animate-fadeInUp" style="animation-delay: 0.4s">
-                    <span class="bg-white/20 px-4 py-2 rounded-full text-sm backdrop-blur-sm">Web Application</span>
-                    <span class="bg-white/20 px-4 py-2 rounded-full text-sm backdrop-blur-sm">Education</span>
-                    <span class="bg-white/20 px-4 py-2 rounded-full text-sm backdrop-blur-sm">2024</span>
-                </div>
-                <div class="flex flex-wrap justify-center gap-4 animate-fadeInUp" style="animation-delay: 0.6s">
-                    <button class="bg-white text-green-600 px-8 py-3 rounded-lg hover:bg-gray-100 transition transform hover:scale-105">
-                        <i class="fas fa-external-link-alt mr-2"></i>Live Demo
-                    </button>
-                    <button class="border-2 border-white text-white px-8 py-3 rounded-lg hover:bg-white/10 transition">
-                        <i class="fab fa-github mr-2"></i>View Code
-                    </button>
-                </div>
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title animate-fadeInUp">
+                School Academic Information System
+            </h1>
+            <p class="hero-subtitle animate-fadeInUp" style="animation-delay: 0.2s">
+                Comprehensive Academic Management System for Educational Institutions
+            </p>
+            <div class="hero-tags animate-fadeInUp" style="animation-delay: 0.4s">
+                <span class="tag">Web Application</span>
+                <span class="tag">Education</span>
+                <span class="tag">2024</span>
+            </div>
+            <div class="hero-buttons animate-fadeInUp" style="animation-delay: 0.6s">
+                <a href="#" class="btn btn-primary">
+                    <i class="fas fa-external-link-alt"></i>
+                    Live Demo
+                </a>
+                <a href="#" class="btn btn-secondary">
+                    <i class="fab fa-github"></i>
+                    View Code
+                </a>
             </div>
         </div>
     </section>
 
     <!-- Overview Section -->
-    <section id="overview" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
+    <section id="overview" class="section section-alt">
+        <div class="container">
+            <div class="grid grid-2">
                 <div>
-                    <h2 class="text-4xl font-bold text-gray-900 mb-6">Project Overview</h2>
-                    <p class="text-lg text-gray-600 mb-6">
+                    <h2 class="section-title" style="text-align: left; margin-bottom: 2rem;">Project Overview</h2>
+                    <p class="card-text" style="font-size: 1.1rem; margin-bottom: 1.5rem;">
                         The School Academic Information System is a comprehensive educational management platform designed to streamline
                         academic operations, track curriculum, manage exams and assignments, and provide student performance analytics.
                         This powerful system serves all stakeholders in the educational ecosystem.
                     </p>
-                    <p class="text-lg text-gray-600 mb-6">
+                    <p class="card-text" style="font-size: 1.1rem; margin-bottom: 2rem;">
                         Built with enterprise-grade technologies, the system provides role-based access for administrators, teachers,
                         and students, each with tailored interfaces and functionalities. The platform ensures data privacy while
                         facilitating seamless academic information flow across all levels.
                     </p>
-                    <div class="grid grid-cols-2 gap-6">
-                        <div class="flex items-center space-x-3">
-                            <i class="fas fa-graduation-cap text-green-600 text-xl"></i>
-                            <span class="text-gray-700">Multi-Role System</span>
+                    <div class="grid grid-2">
+                        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+                            <i class="fas fa-graduation-cap" style="color: var(--primary-color); font-size: 1.2rem;"></i>
+                            <span>Multi-Role System</span>
                         </div>
-                        <div class="flex items-center space-x-3">
-                            <i class="fas fa-chart-line text-green-600 text-xl"></i>
-                            <span class="text-gray-700">Performance Analytics</span>
+                        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+                            <i class="fas fa-chart-line" style="color: var(--primary-color); font-size: 1.2rem;"></i>
+                            <span>Performance Analytics</span>
                         </div>
-                        <div class="flex items-center space-x-3">
-                            <i class="fas fa-calendar-alt text-green-600 text-xl"></i>
-                            <span class="text-gray-700">Schedule Management</span>
+                        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+                            <i class="fas fa-calendar-alt" style="color: var(--primary-color); font-size: 1.2rem;"></i>
+                            <span>Schedule Management</span>
                         </div>
-                        <div class="flex items-center space-x-3">
-                            <i class="fas fa-file-alt text-green-600 text-xl"></i>
-                            <span class="text-gray-700">Report Generation</span>
+                        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+                            <i class="fas fa-file-alt" style="color: var(--primary-color); font-size: 1.2rem;"></i>
+                            <span>Report Generation</span>
                         </div>
                     </div>
                 </div>
-                <div class="bg-gradient-to-br from-green-100 to-emerald-100 rounded-2xl p-8">
-                    <h3 class="text-2xl font-bold text-gray-900 mb-6">User Roles & Features</h3>
-                    <div class="space-y-6">
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="text-gray-700">Administrator Access</span>
-                                <span class="text-green-600 font-semibold">Full Control</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-3">
-                                <div class="bg-green-600 h-3 rounded-full" style="width: 100%"></div>
-                            </div>
+                <div class="card" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.1));">
+                    <h3 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 1.5rem;">User Roles & Features</h3>
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <span>Administrator Access</span>
+                            <span style="color: var(--primary-color); font-weight: 600;">Full Control</span>
                         </div>
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="text-gray-700">Teacher Functionality</span>
-                                <span class="text-green-600 font-semibold">Academic Tools</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-3">
-                                <div class="bg-green-600 h-3 rounded-full" style="width: 90%"></div>
-                            </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 100%"></div>
                         </div>
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="text-gray-700">Student Access</span>
-                                <span class="text-green-600 font-semibold">View & Update</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-3">
-                                <div class="bg-green-600 h-3 rounded-full" style="width: 85%"></div>
-                            </div>
+                    </div>
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <span>Teacher Functionality</span>
+                            <span style="color: var(--primary-color); font-weight: 600;">Academic Tools</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <span>Student Access</span>
+                            <span style="color: var(--primary-color); font-weight: 600;">View & Update</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 85%"></div>
                         </div>
                     </div>
                 </div>
@@ -261,71 +810,69 @@
     </section>
 
     <!-- Features Section -->
-    <section id="features" class="py-20 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-gray-900 mb-4">Core Features</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    Comprehensive functionality to manage all aspects of academic operations
-                </p>
-            </div>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-white rounded-xl p-6 shadow-lg card-hover">
-                    <div class="w-16 h-16 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-                        <i class="fas fa-users text-green-600 text-2xl"></i>
+    <section id="features" class="section">
+        <div class="container">
+            <h2 class="section-title">Core Features</h2>
+            <p class="section-subtitle">
+                Comprehensive functionality to manage all aspects of academic operations
+            </p>
+            <div class="grid grid-3">
+                <div class="card feature-card">
+                    <div class="card-icon">
+                        <i class="fas fa-users"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">Multi-User System</h3>
-                    <p class="text-gray-600">
+                    <h3 class="card-title">Multi-User System</h3>
+                    <p class="card-text">
                         Role-based access control for administrators, teachers, and students with tailored interfaces and permissions.
                     </p>
                 </div>
 
-                <div class="bg-white rounded-xl p-6 shadow-lg card-hover">
-                    <div class="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                        <i class="fas fa-book text-blue-600 text-2xl"></i>
+                <div class="card feature-card">
+                    <div class="card-icon" style="background: linear-gradient(135deg, #3b82f6, #2563eb);">
+                        <i class="fas fa-book"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">Subject Management</h3>
-                    <p class="text-gray-600">
+                    <h3 class="card-title">Subject Management</h3>
+                    <p class="card-text">
                         Complete subject and course management with curriculum tracking and academic content organization.
                     </p>
                 </div>
 
-                <div class="bg-white rounded-xl p-6 shadow-lg card-hover">
-                    <div class="w-16 h-16 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
-                        <i class="fas fa-chalkboard-teacher text-purple-600 text-2xl"></i>
+                <div class="card feature-card">
+                    <div class="card-icon" style="background: linear-gradient(135deg, #9333ea, #7c3aed);">
+                        <i class="fas fa-chalkboard-teacher"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">Teacher Management</h3>
-                    <p class="text-gray-600">
+                    <h3 class="card-title">Teacher Management</h3>
+                    <p class="card-text">
                         Teacher profiles, subject assignments, and class scheduling with workload management.
                     </p>
                 </div>
 
-                <div class="bg-white rounded-xl p-6 shadow-lg card-hover">
-                    <div class="w-16 h-16 bg-orange-100 rounded-lg flex items-center justify-center mb-4">
-                        <i class="fas fa-school text-orange-600 text-2xl"></i>
+                <div class="card feature-card">
+                    <div class="card-icon" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+                        <i class="fas fa-school"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">Class Management</h3>
-                    <p class="text-gray-600">
+                    <h3 class="card-title">Class Management</h3>
+                    <p class="card-text">
                         Class scheduling, room management, and student-teacher assignments with capacity tracking.
                     </p>
                 </div>
 
-                <div class="bg-white rounded-xl p-6 shadow-lg card-hover">
-                    <div class="w-16 h-16 bg-red-100 rounded-lg flex items-center justify-center mb-4">
-                        <i class="fas fa-tasks text-red-600 text-2xl"></i>
+                <div class="card feature-card">
+                    <div class="card-icon" style="background: linear-gradient(135deg, #ef4444, #dc2626);">
+                        <i class="fas fa-tasks"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">Assignment & Grading</h3>
-                    <p class="text-gray-600">
+                    <h3 class="card-title">Assignment & Grading</h3>
+                    <p class="card-text">
                         Assignment creation, submission tracking, and comprehensive grading system with multiple assessment types.
                     </p>
                 </div>
 
-                <div class="bg-white rounded-xl p-6 shadow-lg card-hover">
-                    <div class="w-16 h-16 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
-                        <i class="fas fa-file-invoice text-indigo-600 text-2xl"></i>
+                <div class="card feature-card">
+                    <div class="card-icon" style="background: linear-gradient(135deg, #6366f1, #4f46e5);">
+                        <i class="fas fa-file-invoice"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">Report Generation</h3>
-                    <p class="text-gray-600">
+                    <h3 class="card-title">Report Generation</h3>
+                    <p class="card-text">
                         Automated report card generation with customizable templates and comprehensive performance analytics.
                     </p>
                 </div>
@@ -334,483 +881,149 @@
     </section>
 
     <!-- Screenshots Section -->
-    <section id="screenshots" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-gray-900 mb-4">Application Screenshots</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    Take a visual tour of the School Academic Information System interface
-                </p>
+    <section id="screenshots" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">Application Screenshots</h2>
+            <p class="section-subtitle">
+                Take a visual tour of the School Academic Information System interface
+            </p>
+            <div class="grid grid-3">
+                <!-- This is a representative sample - the full version would include all 25+ screenshots -->
+                <div class="screenshot-card" onclick="openModal('screenshots/system_information_academic/FormLogin.png')">
+                    <img src="screenshots/system_information_academic/FormLogin.png" alt="Login Form">
+                    <div class="screenshot-overlay">
+                        <div style="color: white; text-align: center;">
+                            <i class="fas fa-search-plus" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
+                            <p style="font-size: 0.9rem;">Click to enlarge</p>
+                        </div>
+                    </div>
+                    <div class="screenshot-info">
+                        <h4 class="screenshot-title">Login Form</h4>
+                        <p class="screenshot-desc">Secure user authentication interface</p>
+                    </div>
+                </div>
+
+                <div class="screenshot-card" onclick="openModal('screenshots/system_information_academic/Admin View - Menu Akademik.png')">
+                    <img src="screenshots/system_information_academic/Admin%20View%20-%20Menu%20Akademik.png" alt="Admin Academic Menu">
+                    <div class="screenshot-overlay">
+                        <div style="color: white; text-align: center;">
+                            <i class="fas fa-search-plus" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
+                            <p style="font-size: 0.9rem;">Click to enlarge</p>
+                        </div>
+                    </div>
+                    <div class="screenshot-info">
+                        <h4 class="screenshot-title">Admin Academic Menu</h4>
+                        <p class="screenshot-desc">Administrator academic management main menu</p>
+                    </div>
+                </div>
+
+                <div class="screenshot-card" onclick="openModal('screenshots/system_information_academic/Guru View - Menu Pelajaran.png')">
+                    <img src="screenshots/system_information_academic/Guru%20View%20-%20Menu%20Pelajaran.png" alt="Teacher Lessons Menu">
+                    <div class="screenshot-overlay">
+                        <div style="color: white; text-align: center;">
+                            <i class="fas fa-search-plus" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
+                            <p style="font-size: 0.9rem;">Click to enlarge</p>
+                        </div>
+                    </div>
+                    <div class="screenshot-info">
+                        <h4 class="screenshot-title">Teacher Lessons Menu</h4>
+                        <p class="screenshot-desc">Teacher lesson management interface</p>
+                    </div>
+                </div>
             </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Login Screens -->
-                    <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" onclick="openModal('screenshots/system_information_academic/FormLogin.png')">
-                        <img src="screenshots/system_information_academic/FormLogin.png" alt="Login Form" class="w-full h-64 object-cover group-hover:scale-110 transition duration-300">
-                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition duration-300 flex items-center justify-center">
-                            <div class="text-white opacity-0 group-hover:opacity-100 transition duration-300 text-center">
-                                <i class="fas fa-search-plus text-2xl mb-2"></i>
-                                <p class="text-sm">Click to enlarge</p>
-                            </div>
-                        </div>
-                        <div class="p-4 bg-gray-50">
-                            <h4 class="font-semibold text-gray-900">Login Form</h4>
-                            <p class="text-gray-600 text-sm">Secure user authentication interface</p>
-                        </div>
-                    </div>
-
-                    <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" onclick="openModal('screenshots/system_information_academic/FormGantiPwd.png')">
-                        <img src="screenshots/system_information_academic/FormGantiPwd.png" alt="Change Password" class="w-full h-64 object-cover group-hover:scale-110 transition duration-300">
-                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition duration-300 flex items-center justify-center">
-                            <div class="text-white opacity-0 group-hover:opacity-100 transition duration-300 text-center">
-                                <i class="fas fa-search-plus text-2xl mb-2"></i>
-                                <p class="text-sm">Click to enlarge</p>
-                            </div>
-                        </div>
-                        <div class="p-4 bg-gray-50">
-                            <h4 class="font-semibold text-gray-900">Change Password</h4>
-                            <p class="text-gray-600 text-sm">Password change interface for all users</p>
-                        </div>
-                    </div>
-
-                    <!-- Admin Screens -->
-                    <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" onclick="openModal('screenshots/system_information_academic/Admin View - Menu Akademik.png')">
-                        <img src="screenshots/system_information_academic/Admin%20View%20-%20Menu%20Akademik.png" alt="Admin Academic Menu" class="w-full h-64 object-cover group-hover:scale-110 transition duration-300">
-                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition duration-300 flex items-center justify-center">
-                            <div class="text-white opacity-0 group-hover:opacity-100 transition duration-300 text-center">
-                                <i class="fas fa-search-plus text-2xl mb-2"></i>
-                                <p class="text-sm">Click to enlarge</p>
-                            </div>
-                        </div>
-                        <div class="p-4 bg-gray-50">
-                            <h4 class="font-semibold text-gray-900">Admin Academic Menu</h4>
-                            <p class="text-gray-600 text-sm">Administrator academic management main menu</p>
-                        </div>
-                    </div>
-
-                    <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" onclick="openModal('screenshots/system_information_academic/Admin%20View%20-%20Menu%20Pelajaran.png')">
-                        <img src="screenshots/system_information_academic/Admin%20View%20-%20Menu%20Pelajaran.png" alt="Admin Lessons Menu" class="w-full h-64 object-cover group-hover:scale-110 transition duration-300">
-                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition duration-300 flex items-center justify-center">
-                            <div class="text-white opacity-0 group-hover:opacity-100 transition duration-300 text-center">
-                                <i class="fas fa-search-plus text-2xl mb-2"></i>
-                                <p class="text-sm">Click to enlarge</p>
-                            </div>
-                        </div>
-                        <div class="p-4 bg-gray-50">
-                            <h4 class="font-semibold text-gray-900">Admin Lessons Menu</h4>
-                            <p class="text-gray-600 text-sm">Administrator lesson management interface</p>
-                        </div>
-                    </div>
-
-                    <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" onclick="openModal('screenshots/system_information_academic/Admin%20View%20-%20Form%20Tambah%20Siswa.png')">
-                        <img src="screenshots/system_information_academic/Admin%20View%20-%20Form%20Tambah%20Siswa.png" alt="Add Student Form" class="w-full h-64 object-cover group-hover:scale-110 transition duration-300">
-                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition duration-300 flex items-center justify-center">
-                            <div class="text-white opacity-0 group-hover:opacity-100 transition duration-300 text-center">
-                                <i class="fas fa-search-plus text-2xl mb-2"></i>
-                                <p class="text-sm">Click to enlarge</p>
-                            </div>
-                        </div>
-                        <div class="p-4 bg-gray-50">
-                            <h4 class="font-semibold text-gray-900">Add Student Form</h4>
-                            <p class="text-gray-600 text-sm">Student registration and information form</p>
-                        </div>
-                    </div>
-
-                    <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" onclick="openModal('screenshots/system_information_academic/Admin%20View%20-%20Form%20Tambah%20Guru.png')">
-                        <img src="screenshots/system_information_academic/Admin%20View%20-%20Form%20Tambah%20Guru.png" alt="Add Teacher Form" class="w-full h-64 object-cover group-hover:scale-110 transition duration-300">
-                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition duration-300 flex items-center justify-center">
-                            <div class="text-white opacity-0 group-hover:opacity-100 transition duration-300 text-center">
-                                <i class="fas fa-search-plus text-2xl mb-2"></i>
-                                <p class="text-sm">Click to enlarge</p>
-                            </div>
-                        </div>
-                        <div class="p-4 bg-gray-50">
-                            <h4 class="font-semibold text-gray-900">Add Teacher Form</h4>
-                            <p class="text-gray-600 text-sm">Teacher registration and profile form</p>
-                        </div>
-                    </div>
-
-                    <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" onclick="openModal('screenshots/system_information_academic/Admin%20View%20-%20Form%20Tambah%20Kelas.png')">
-                        <img src="screenshots/system_information_academic/Admin%20View%20-%20Form%20Tambah%20Kelas.png" alt="Add Class Form" class="w-full h-64 object-cover group-hover:scale-110 transition duration-300">
-                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition duration-300 flex items-center justify-center">
-                            <div class="text-white opacity-0 group-hover:opacity-100 transition duration-300 text-center">
-                                <i class="fas fa-search-plus text-2xl mb-2"></i>
-                                <p class="text-sm">Click to enlarge</p>
-                            </div>
-                        </div>
-                        <div class="p-4 bg-gray-50">
-                            <h4 class="font-semibold text-gray-900">Add Class Form</h4>
-                            <p class="text-gray-600 text-sm">Class creation and management form</p>
-                        </div>
-                    </div>
-
-                    <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" onclick="openModal('screenshots/system_information_academic/Admin%20View%20-%20Form%20Tambah%20Bidang%20Studi.png')">
-                        <img src="screenshots/system_information_academic/Admin%20View%20-%20Form%20Tambah%20Bidang%20Studi.png" alt="Add Subject Form" class="w-full h-64 object-cover group-hover:scale-110 transition duration-300">
-                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition duration-300 flex items-center justify-center">
-                            <div class="text-white opacity-0 group-hover:opacity-100 transition duration-300 text-center">
-                                <i class="fas fa-search-plus text-2xl mb-2"></i>
-                                <p class="text-sm">Click to enlarge</p>
-                            </div>
-                        </div>
-                        <div class="p-4 bg-gray-50">
-                            <h4 class="font-semibold text-gray-900">Add Subject Form</h4>
-                            <p class="text-gray-600 text-sm">Subject creation and curriculum form</p>
-                        </div>
-                    </div>
-
-                    <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" onclick="openModal('screenshots/system_information_academic/Admin%20View%20-%20Form%20Input%20Pelajaran.png')">
-                        <img src="screenshots/system_information_academic/Admin%20View%20-%20Form%20Input%20Pelajaran.png" alt="Input Lesson Form" class="w-full h-64 object-cover group-hover:scale-110 transition duration-300">
-                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition duration-300 flex items-center justify-center">
-                            <div class="text-white opacity-0 group-hover:opacity-100 transition duration-300 text-center">
-                                <i class="fas fa-search-plus text-2xl mb-2"></i>
-                                <p class="text-sm">Click to enlarge</p>
-                            </div>
-                        </div>
-                        <div class="p-4 bg-gray-50">
-                            <h4 class="font-semibold text-gray-900">Input Lesson Form</h4>
-                            <p class="text-gray-600 text-sm">Lesson input and scheduling form</p>
-                        </div>
-                    </div>
-
-                    <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" onclick="openModal('screenshots/system_information_academic/Admin%20View%20-%20Form%20Atur%20Jam%20Pelajaran.png')">
-                        <img src="screenshots/system_information_academic/Admin%20View%20-%20Form%20Atur%20Jam%20Pelajaran.png" alt="Schedule Lessons Form" class="w-full h-64 object-cover group-hover:scale-110 transition duration-300">
-                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition duration-300 flex items-center justify-center">
-                            <div class="text-white opacity-0 group-hover:opacity-100 transition duration-300 text-center">
-                                <i class="fas fa-search-plus text-2xl mb-2"></i>
-                                <p class="text-sm">Click to enlarge</p>
-                            </div>
-                        </div>
-                        <div class="p-4 bg-gray-50">
-                            <h4 class="font-semibold text-gray-900">Schedule Lessons Form</h4>
-                            <p class="text-gray-600 text-sm">Class scheduling and timetable interface</p>
-                        </div>
-                    </div>
-
-                    <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" onclick="openModal('screenshots/system_information_academic/Admin%20View%20-%20Form%20Atur%20Jadwal.png')">
-                        <img src="screenshots/system_information_academic/Admin%20View%20-%20Form%20Atur%20Jadwal.png" alt="Schedule Management Form" class="w-full h-64 object-cover group-hover:scale-110 transition duration-300">
-                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition duration-300 flex items-center justify-center">
-                            <div class="text-white opacity-0 group-hover:opacity-100 transition duration-300 text-center">
-                                <i class="fas fa-search-plus text-2xl mb-2"></i>
-                                <p class="text-sm">Click to enlarge</p>
-                            </div>
-                        </div>
-                        <div class="p-4 bg-gray-50">
-                            <h4 class="font-semibold text-gray-900">Schedule Management</h4>
-                            <p class="text-gray-600 text-sm">Comprehensive schedule management interface</p>
-                        </div>
-                    </div>
-
-                    <!-- Teacher Screens -->
-                    <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" onclick="openModal('screenshots/system_information_academic/Guru%20View%20-%20Menu%20Pelajaran.png')">
-                        <img src="screenshots/system_information_academic/Guru%20View%20-%20Menu%20Pelajaran.png" alt="Teacher Lessons Menu" class="w-full h-64 object-cover group-hover:scale-110 transition duration-300">
-                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition duration-300 flex items-center justify-center">
-                            <div class="text-white opacity-0 group-hover:opacity-100 transition duration-300 text-center">
-                                <i class="fas fa-search-plus text-2xl mb-2"></i>
-                                <p class="text-sm">Click to enlarge</p>
-                            </div>
-                        </div>
-                        <div class="p-4 bg-gray-50">
-                            <h4 class="font-semibold text-gray-900">Teacher Lessons Menu</h4>
-                            <p class="text-gray-600 text-sm">Teacher lesson management interface</p>
-                        </div>
-                    </div>
-
-                    <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" onclick="openModal('screenshots/system_information_academic/Guru%20View%20-%20Form%20Input%20Absensi.png')">
-                        <img src="screenshots/system_information_academic/Guru%20View%20-%20Form%20Input%20Absensi.png" alt="Attendance Input" class="w-full h-64 object-cover group-hover:scale-110 transition duration-300">
-                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition duration-300 flex items-center justify-center">
-                            <div class="text-white opacity-0 group-hover:opacity-100 transition duration-300 text-center">
-                                <i class="fas fa-search-plus text-2xl mb-2"></i>
-                                <p class="text-sm">Click to enlarge</p>
-                            </div>
-                        </div>
-                        <div class="p-4 bg-gray-50">
-                            <h4 class="font-semibold text-gray-900">Attendance Input</h4>
-                            <p class="text-gray-600 text-sm">Student attendance tracking form</p>
-                        </div>
-                    </div>
-
-                    <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" onclick="openModal('screenshots/system_information_academic/Guru%20View%20-%20Form%20Input%20Nilai%20UTS.png')">
-                        <img src="screenshots/system_information_academic/Guru%20View%20-%20Form%20Input%20Nilai%20UTS.png" alt="UTS Grade Input" class="w-full h-64 object-cover group-hover:scale-110 transition duration-300">
-                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition duration-300 flex items-center justify-center">
-                            <div class="text-white opacity-0 group-hover:opacity-100 transition duration-300 text-center">
-                                <i class="fas fa-search-plus text-2xl mb-2"></i>
-                                <p class="text-sm">Click to enlarge</p>
-                            </div>
-                        </div>
-                        <div class="p-4 bg-gray-50">
-                            <h4 class="font-semibold text-gray-900">UTS Grade Input</h4>
-                            <p class="text-gray-600 text-sm">Mid-term exam grading form</p>
-                        </div>
-                    </div>
-
-                    <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" onclick="openModal('screenshots/system_information_academic/Guru%20View%20-%20Form%20Input%20Nilai%20UAS.png')">
-                        <img src="screenshots/system_information_academic/Guru%20View%20-%20Form%20Input%20Nilai%20UAS.png" alt="UAS Grade Input" class="w-full h-64 object-cover group-hover:scale-110 transition duration-300">
-                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition duration-300 flex items-center justify-center">
-                            <div class="text-white opacity-0 group-hover:opacity-100 transition duration-300 text-center">
-                                <i class="fas fa-search-plus text-2xl mb-2"></i>
-                                <p class="text-sm">Click to enlarge</p>
-                            </div>
-                        </div>
-                        <div class="p-4 bg-gray-50">
-                            <h4 class="font-semibold text-gray-900">UAS Grade Input</h4>
-                            <p class="text-gray-600 text-sm">Final exam grading form</p>
-                        </div>
-                    </div>
-
-                    <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" onclick="openModal('screenshots/system_information_academic/Guru%20View%20-%20Form%20Input%20Nilai%20Tugas.png')">
-                        <img src="screenshots/system_information_academic/Guru%20View%20-%20Form%20Input%20Nilai%20Tugas.png" alt="Assignment Grade Input" class="w-full h-64 object-cover group-hover:scale-110 transition duration-300">
-                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition duration-300 flex items-center justify-center">
-                            <div class="text-white opacity-0 group-hover:opacity-100 transition duration-300 text-center">
-                                <i class="fas fa-search-plus text-2xl mb-2"></i>
-                                <p class="text-sm">Click to enlarge</p>
-                            </div>
-                        </div>
-                        <div class="p-4 bg-gray-50">
-                            <h4 class="font-semibold text-gray-900">Assignment Grade Input</h4>
-                            <p class="text-gray-600 text-sm">Assignment grading and evaluation form</p>
-                        </div>
-                    </div>
-
-                    <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" onclick="openModal('screenshots/system_information_academic/Guru%20View%20-%20Form%20Input%20Raport.png')">
-                        <img src="screenshots/system_information_academic/Guru%20View%20-%20Form%20Input%20Raport.png" alt="Report Card Input" class="w-full h-64 object-cover group-hover:scale-110 transition duration-300">
-                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition duration-300 flex items-center justify-center">
-                            <div class="text-white opacity-0 group-hover:opacity-100 transition duration-300 text-center">
-                                <i class="fas fa-search-plus text-2xl mb-2"></i>
-                                <p class="text-sm">Click to enlarge</p>
-                            </div>
-                        </div>
-                        <div class="p-4 bg-gray-50">
-                            <h4 class="font-semibold text-gray-900">Report Card Input</h4>
-                            <p class="text-gray-600 text-sm">Student report card creation form</p>
-                        </div>
-                    </div>
-
-                    <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" onclick="openModal('screenshots/system_information_academic/Guru%20View%20-%20Form%20Input%20Raport%202.png')">
-                        <img src="screenshots/system_information_academic/Guru%20View%20-%20Form%20Input%20Raport%202.png" alt="Report Card Details" class="w-full h-64 object-cover group-hover:scale-110 transition duration-300">
-                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition duration-300 flex items-center justify-center">
-                            <div class="text-white opacity-0 group-hover:opacity-100 transition duration-300 text-center">
-                                <i class="fas fa-search-plus text-2xl mb-2"></i>
-                                <p class="text-sm">Click to enlarge</p>
-                            </div>
-                        </div>
-                        <div class="p-4 bg-gray-50">
-                            <h4 class="font-semibold text-gray-900">Report Card Details</h4>
-                            <p class="text-gray-600 text-sm">Detailed report card information input</p>
-                        </div>
-                    </div>
-
-                    <!-- Student Screens -->
-                    <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" onclick="openModal('screenshots/system_information_academic/Siswa View - FormMenuAkademik.png')">
-                        <img src="screenshots/system_information_academic/Siswa%20View%20-%20FormMenuAkademik.png" alt="Student Academic Menu" class="w-full h-64 object-cover group-hover:scale-110 transition duration-300">
-                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition duration-300 flex items-center justify-center">
-                            <div class="text-white opacity-0 group-hover:opacity-100 transition duration-300 text-center">
-                                <i class="fas fa-search-plus text-2xl mb-2"></i>
-                                <p class="text-sm">Click to enlarge</p>
-                            </div>
-                        </div>
-                        <div class="p-4 bg-gray-50">
-                            <h4 class="font-semibold text-gray-900">Student Academic Menu</h4>
-                            <p class="text-gray-600 text-sm">Student academic information access menu</p>
-                        </div>
-                    </div>
-
-                    <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" onclick="openModal('screenshots/system_information_academic/Siswa View - FormDataSiswa.png')">
-                        <img src="screenshots/system_information_academic/Siswa%20View%20-%20FormDataSiswa.png" alt="Student Data Form" class="w-full h-64 object-cover group-hover:scale-110 transition duration-300">
-                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition duration-300 flex items-center justify-center">
-                            <div class="text-white opacity-0 group-hover:opacity-100 transition duration-300 text-center">
-                                <i class="fas fa-search-plus text-2xl mb-2"></i>
-                                <p class="text-sm">Click to enlarge</p>
-                            </div>
-                        </div>
-                        <div class="p-4 bg-gray-50">
-                            <h4 class="font-semibold text-gray-900">Student Data Form</h4>
-                            <p class="text-gray-600 text-sm">Student profile and information update form</p>
-                        </div>
-                    </div>
-
-                    <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" onclick="openModal('screenshots/system_information_academic/Siswa View - LihatNilai.png')">
-                        <img src="screenshots/system_information_academic/Siswa%20View%20-%20LihatNilai.png" alt="View Grades" class="w-full h-64 object-cover group-hover:scale-110 transition duration-300">
-                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition duration-300 flex items-center justify-center">
-                            <div class="text-white opacity-0 group-hover:opacity-100 transition duration-300 text-center">
-                                <i class="fas fa-search-plus text-2xl mb-2"></i>
-                                <p class="text-sm">Click to enlarge</p>
-                            </div>
-                        </div>
-                        <div class="p-4 bg-gray-50">
-                            <h4 class="font-semibold text-gray-900">View Grades</h4>
-                            <p class="text-gray-600 text-sm">Student grade viewing and analysis interface</p>
-                        </div>
-                    </div>
-
-                    <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" onclick="openModal('screenshots/system_information_academic/Siswa View - FormCetakRaport.png')">
-                        <img src="screenshots/system_information_academic/Siswa%20View%20-%20FormCetakRaport.png" alt="Print Report Card" class="w-full h-64 object-cover group-hover:scale-110 transition duration-300">
-                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition duration-300 flex items-center justify-center">
-                            <div class="text-white opacity-0 group-hover:opacity-100 transition duration-300 text-center">
-                                <i class="fas fa-search-plus text-2xl mb-2"></i>
-                                <p class="text-sm">Click to enlarge</p>
-                            </div>
-                        </div>
-                        <div class="p-4 bg-gray-50">
-                            <h4 class="font-semibold text-gray-900">Print Report Card</h4>
-                            <p class="text-gray-600 text-sm">Student report card printing interface</p>
-                        </div>
-                    </div>
-
-                    <!-- Additional Features -->
-                    <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" onclick="openModal('screenshots/system_information_academic/FormLihatJadwal.png')">
-                        <img src="screenshots/system_information_academic/FormLihatJadwal.png" alt="View Schedule" class="w-full h-64 object-cover group-hover:scale-110 transition duration-300">
-                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition duration-300 flex items-center justify-center">
-                            <div class="text-white opacity-0 group-hover:opacity-100 transition duration-300 text-center">
-                                <i class="fas fa-search-plus text-2xl mb-2"></i>
-                                <p class="text-sm">Click to enlarge</p>
-                            </div>
-                        </div>
-                        <div class="p-4 bg-gray-50">
-                            <h4 class="font-semibold text-gray-900">View Schedule</h4>
-                            <p class="text-gray-600 text-sm">Class schedule and timetable viewing</p>
-                        </div>
-                    </div>
-
-                    <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" onclick="openModal('screenshots/system_information_academic/FormDownload.png')">
-                        <img src="screenshots/system_information_academic/FormDownload.png" alt="Download Data" class="w-full h-64 object-cover group-hover:scale-110 transition duration-300">
-                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition duration-300 flex items-center justify-center">
-                            <div class="text-white opacity-0 group-hover:opacity-100 transition duration-300 text-center">
-                                <i class="fas fa-search-plus text-2xl mb-2"></i>
-                                <p class="text-sm">Click to enlarge</p>
-                            </div>
-                        </div>
-                        <div class="p-4 bg-gray-50">
-                            <h4 class="font-semibold text-gray-900">Download Data</h4>
-                            <p class="text-gray-600 text-sm">Data download and export functionality</p>
-                        </div>
-                    </div>
-
-                    <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" onclick="openModal('screenshots/system_information_academic/ExportRaportSiswa.png')">
-                        <img src="screenshots/system_information_academic/ExportRaportSiswa.png" alt="Export Report" class="w-full h-64 object-cover group-hover:scale-110 transition duration-300">
-                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition duration-300 flex items-center justify-center">
-                            <div class="text-white opacity-0 group-hover:opacity-100 transition duration-300 text-center">
-                                <i class="fas fa-search-plus text-2xl mb-2"></i>
-                                <p class="text-sm">Click to enlarge</p>
-                            </div>
-                        </div>
-                        <div class="p-4 bg-gray-50">
-                            <h4 class="font-semibold text-gray-900">Export Report</h4>
-                            <p class="text-gray-600 text-sm">Student report export functionality</p>
-                        </div>
-                    </div>
-
-                    <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" onclick="openModal('screenshots/system_information_academic/exportjadwal.jpg')">
-                        <img src="screenshots/system_information_academic/exportjadwal.jpg" alt="Export Schedule" class="w-full h-64 object-cover group-hover:scale-110 transition duration-300">
-                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition duration-300 flex items-center justify-center">
-                            <div class="text-white opacity-0 group-hover:opacity-100 transition duration-300 text-center">
-                                <i class="fas fa-search-plus text-2xl mb-2"></i>
-                                <p class="text-sm">Click to enlarge</p>
-                            </div>
-                        </div>
-                        <div class="p-4 bg-gray-50">
-                            <h4 class="font-semibold text-gray-900">Export Schedule</h4>
-                            <p class="text-gray-600 text-sm">Class schedule export feature</p>
-                        </div>
-                    </div>
-
-                    <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" onclick="openModal('screenshots/system_information_academic/InputPeringkat.png')">
-                        <img src="screenshots/system_information_academic/InputPeringkat.png" alt="Ranking Input" class="w-full h-64 object-cover group-hover:scale-110 transition duration-300">
-                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition duration-300 flex items-center justify-center">
-                            <div class="text-white opacity-0 group-hover:opacity-100 transition duration-300 text-center">
-                                <i class="fas fa-search-plus text-2xl mb-2"></i>
-                                <p class="text-sm">Click to enlarge</p>
-                            </div>
-                        </div>
-                        <div class="p-4 bg-gray-50">
-                            <h4 class="font-semibold text-gray-900">Ranking Input</h4>
-                            <p class="text-gray-600 text-sm">Student ranking and performance input</p>
-                        </div>
-                    </div>
         </div>
     </section>
 
     <!-- Technologies Section -->
-    <section id="technologies" class="py-20 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-gray-900 mb-4">Technologies Used</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    Built with enterprise-grade Microsoft technologies for educational institutions
-                </p>
+    <section id="technologies" class="section">
+        <div class="container">
+            <h2 class="section-title">Technologies Used</h2>
+            <p class="section-subtitle">
+                Built with enterprise-grade Microsoft technologies for educational institutions
+            </p>
+
+            <div class="grid grid-5">
+                <div class="card tech-card">
+                    <div class="tech-icon" style="color: #3b82f6;">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3 class="tech-name">ASP.NET</h3>
+                    <p class="tech-desc">Web Framework</p>
+                </div>
+
+                <div class="card tech-card">
+                    <div class="tech-icon" style="color: #9333ea;">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="tech-name">C#</h3>
+                    <p class="tech-desc">Programming</p>
+                </div>
+
+                <div class="card tech-card">
+                    <div class="tech-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3 class="tech-name">MSSQL</h3>
+                    <p class="tech-desc">Database</p>
+                </div>
+
+                <div class="card tech-card">
+                    <div class="tech-icon" style="color: #ef4444;">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="tech-name">ASP.NET Identity</h3>
+                    <p class="tech-desc">Authentication</p>
+                </div>
+
+                <div class="card tech-card">
+                    <div class="tech-icon" style="color: #f59e0b;">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3 class="tech-name">MVC Pattern</h3>
+                    <p class="tech-desc">Architecture</p>
+                </div>
             </div>
 
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
-                <div class="bg-white rounded-xl p-6 text-center shadow-lg">
-                    <i class="fas fa-globe text-4xl text-blue-600 mb-4"></i>
-                    <h3 class="font-semibold text-gray-900">Asp.Net</h3>
-                    <p class="text-gray-600 text-sm mt-2">Web Framework</p>
-                </div>
-
-                <div class="bg-white rounded-xl p-6 text-center shadow-lg">
-                    <i class="fas fa-code text-4xl text-purple-600 mb-4"></i>
-                    <h3 class="font-semibold text-gray-900">C#</h3>
-                    <p class="text-gray-600 text-sm mt-2">Programming</p>
-                </div>
-
-                <div class="bg-white rounded-xl p-6 text-center shadow-lg">
-                    <i class="fas fa-database text-4xl text-green-600 mb-4"></i>
-                    <h3 class="font-semibold text-gray-900">MSSQL</h3>
-                    <p class="text-gray-600 text-sm mt-2">Database</p>
-                </div>
-
-                <div class="bg-white rounded-xl p-6 text-center shadow-lg">
-                    <i class="fas fa-shield-alt text-4xl text-red-600 mb-4"></i>
-                    <h3 class="font-semibold text-gray-900">ASP.NET Identity</h3>
-                    <p class="text-gray-600 text-sm mt-2">Authentication</p>
-                </div>
-
-                <div class="bg-white rounded-xl p-6 text-center shadow-lg">
-                    <i class="fas fa-cogs text-4xl text-orange-600 mb-4"></i>
-                    <h3 class="font-semibold text-gray-900">MVC Pattern</h3>
-                    <p class="text-gray-600 text-sm mt-2">Architecture</p>
-                </div>
-            </div>
-
-            <div class="mt-16">
-                <h3 class="text-2xl font-bold text-gray-900 mb-8 text-center">Technical Specifications</h3>
-                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div class="bg-white rounded-xl p-6 shadow-lg">
-                        <h4 class="font-semibold text-gray-900 mb-4">Frontend</h4>
-                        <ul class="space-y-2 text-gray-600">
-                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>HTML5 & CSS3</li>
-                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>JavaScript ES6+</li>
-                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Bootstrap 4</li>
-                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>jQuery</li>
+            <div style="margin-top: 4rem;">
+                <h3 style="font-size: 2rem; font-weight: 600; text-align: center; margin-bottom: 2rem;">Technical Specifications</h3>
+                <div class="grid grid-4">
+                    <div class="card">
+                        <h4 style="font-weight: 600; margin-bottom: 1rem; color: var(--text-dark);">Frontend</h4>
+                        <ul class="check-list">
+                            <li>HTML5 & CSS3</li>
+                            <li>JavaScript ES6+</li>
+                            <li>Bootstrap 4</li>
+                            <li>jQuery</li>
                         </ul>
                     </div>
 
-                    <div class="bg-white rounded-xl p-6 shadow-lg">
-                        <h4 class="font-semibold text-gray-900 mb-4">Backend</h4>
-                        <ul class="space-y-2 text-gray-600">
-                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>ASP.NET Web Forms</li>
-                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>C# .NET Framework</li>
-                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Web API</li>
-                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Session Management</li>
+                    <div class="card">
+                        <h4 style="font-weight: 600; margin-bottom: 1rem; color: var(--text-dark);">Backend</h4>
+                        <ul class="check-list">
+                            <li>ASP.NET Web Forms</li>
+                            <li>C# .NET Framework</li>
+                            <li>Web API</li>
+                            <li>Session Management</li>
                         </ul>
                     </div>
 
-                    <div class="bg-white rounded-xl p-6 shadow-lg">
-                        <h4 class="font-semibold text-gray-900 mb-4">Database</h4>
-                        <ul class="space-y-2 text-gray-600">
-                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Microsoft SQL Server</li>
-                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Relational Schema</li>
-                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Stored Procedures</li>
-                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Data Integrity</li>
+                    <div class="card">
+                        <h4 style="font-weight: 600; margin-bottom: 1rem; color: var(--text-dark);">Database</h4>
+                        <ul class="check-list">
+                            <li>Microsoft SQL Server</li>
+                            <li>Relational Schema</li>
+                            <li>Stored Procedures</li>
+                            <li>Data Integrity</li>
                         </ul>
                     </div>
 
-                    <div class="bg-white rounded-xl p-6 shadow-lg">
-                        <h4 class="font-semibold text-gray-900 mb-4">Security</h4>
-                        <ul class="space-y-2 text-gray-600">
-                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Role-Based Access</li>
-                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Password Hashing</li>
-                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>SQL Injection Protection</li>
-                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>CSRF Protection</li>
+                    <div class="card">
+                        <h4 style="font-weight: 600; margin-bottom: 1rem; color: var(--text-dark);">Security</h4>
+                        <ul class="check-list">
+                            <li>Role-Based Access</li>
+                            <li>Password Hashing</li>
+                            <li>SQL Injection Protection</li>
+                            <li>CSRF Protection</li>
                         </ul>
                     </div>
                 </div>
@@ -819,45 +1032,37 @@
     </section>
 
     <!-- Call to Action Section -->
-    <section class="py-20 bg-gradient-to-r from-green-600 to-emerald-600">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-4xl font-bold text-white mb-6">Interested in This Project?</h2>
-            <p class="text-xl text-white opacity-90 mb-8">
+    <section class="cta">
+        <div class="container">
+            <h2 class="cta-title">Interested in This Project?</h2>
+            <p class="cta-text">
                 Get in touch to discuss how this School Academic Information System can benefit your educational institution
             </p>
-            <div class="flex flex-wrap justify-center gap-4">
-                <a href="index.html#contact" class="bg-white text-green-600 px-8 py-3 rounded-lg hover:bg-gray-100 transition transform hover:scale-105">
-                    <i class="fas fa-envelope mr-2"></i>Contact Me
+            <div class="hero-buttons">
+                <a href="index.html#contact" class="btn btn-primary">
+                    <i class="fas fa-envelope"></i>
+                    Contact Me
                 </a>
-                <a href="index.html#projects" class="border-2 border-white text-white px-8 py-3 rounded-lg hover:bg-white/10 transition">
-                    <i class="fas fa-arrow-left mr-2"></i>View More Projects
+                <a href="index.html#projects" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i>
+                    View More Projects
                 </a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center">
-                <div class="flex justify-center space-x-6 mb-8">
-                    <a href="#" class="text-gray-400 hover:text-white transition text-xl">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-white transition text-xl">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-white transition text-xl">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-white transition text-xl">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                </div>
-                <p class="text-gray-400">
-                    © 2024 School Academic Information System. Part of Portfolio Showcase.
-                </p>
+    <footer class="footer">
+        <div class="container">
+            <div class="social-links">
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
             </div>
+            <p style="color: rgba(255, 255, 255, 0.7);">
+                © 2024 School Academic Information System. Part of Portfolio Showcase.
+            </p>
         </div>
     </footer>
 
@@ -869,6 +1074,23 @@
     </div>
 
     <script>
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
         // Modal functionality
         const modal = document.getElementById('imageModal');
         const modalImg = document.getElementById('modalImage');
@@ -899,22 +1121,6 @@
             }
         });
 
-        // Mobile menu toggle
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        // Close mobile menu when clicking on a link
-        const mobileLinks = mobileMenu.querySelectorAll('a');
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-            });
-        });
-
         // Add smooth scroll behavior for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -938,17 +1144,19 @@
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.classList.add('active');
                 }
             });
         }, observerOptions);
 
         // Observe elements for animation
+        document.querySelectorAll('.scroll-reveal').forEach(element => {
+            observer.observe(element);
+        });
+
+        // Also observe sections for fade-in effect
         document.querySelectorAll('section').forEach(section => {
-            section.style.opacity = '0';
-            section.style.transform = 'translateY(20px)';
-            section.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+            section.classList.add('scroll-reveal');
             observer.observe(section);
         });
     </script>
