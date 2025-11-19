@@ -120,7 +120,7 @@
             display: flex;
             align-items: center;
             padding-top: 80px;
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #60a5fa 100%);
             color: var(--white);
         }
 
@@ -336,8 +336,8 @@
         /* Projects Section */
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
         }
 
         .project-card {
@@ -356,6 +356,18 @@
         .project-header {
             height: 4px;
             background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .project-header:hover {
+            height: 8px;
+        }
+
+        .project-header-link {
+            display: block;
+            text-decoration: none;
+            color: inherit;
         }
 
         .project-content {
@@ -537,6 +549,7 @@
 
             .projects-grid {
                 grid-template-columns: 1fr;
+                gap: 1rem;
             }
         }
     </style>
@@ -709,7 +722,9 @@
             <div class="projects-grid">
                 <!-- School Management Information System -->
                 <div class="project-card">
-                    <div class="project-header"></div>
+                    <a href="project-school-management.html" class="project-header-link">
+                        <div class="project-header"></div>
+                    </a>
                     <div class="project-content">
                         <div class="project-meta">
                             <span class="project-tag">Education</span>
@@ -742,9 +757,48 @@
                     </div>
                 </div>
 
+                <!-- School Academic Information System -->
+                <div class="project-card">
+                    <a href="project-school-academic.html" class="project-header-link">
+                        <div class="project-header" style="background: linear-gradient(90deg, #10b981, #059669);"></div>
+                    </a>
+                    <div class="project-content">
+                        <div class="project-meta">
+                            <span class="project-tag" style="background: #d1fae5; color: #059669;">Education</span>
+                            <div class="project-links">
+                                <a href="project-school-academic.html" title="View details">
+                                    <i class="fas fa-info-circle"></i>
+                                </a>
+                                <a href="#" title="Live demo">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                                <a href="#" title="GitHub">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="project-title">
+                            <span>📚</span>
+                            <h3>School Academic Information System</h3>
+                        </div>
+                        <p class="project-description">Comprehensive academic management system for tracking curriculum, exams, assignments, and student performance analytics.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Asp.Net</span>
+                            <span class="tech-tag">C#</span>
+                            <span class="tech-tag">MSSQL</span>
+                        </div>
+                        <div class="project-footer">
+                            <span><i class="fas fa-folder"></i> Education</span>
+                            <span><i class="fas fa-calendar"></i> 2024</span>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- HR & Payroll Management System -->
                 <div class="project-card">
-                    <div class="project-header" style="background: linear-gradient(90deg, #9333ea, #6366f1);"></div>
+                    <a href="project-hr-payroll.html" class="project-header-link">
+                        <div class="project-header" style="background: linear-gradient(90deg, #9333ea, #6366f1);"></div>
+                    </a>
                     <div class="project-content">
                         <div class="project-meta">
                             <span class="project-tag" style="background: #f3e8ff; color: #9333ea;">Enterprise</span>
@@ -777,14 +831,54 @@
                     </div>
                 </div>
 
-                <!-- Real Estate Sales Management -->
+                <!-- Digital Information Display & Announcement Management System -->
                 <div class="project-card">
-                    <div class="project-header" style="background: linear-gradient(90deg, #14b8a6, #3b82f6);"></div>
+                    <a href="project-digital-display.html" class="project-header-link">
+                        <div class="project-header" style="background: linear-gradient(90deg, #ea580c, #dc2626);"></div>
+                    </a>
+                    <div class="project-content">
+                        <div class="project-meta">
+                            <span class="project-tag" style="background: #fed7aa; color: #ea580c;">Desktop App</span>
+                            <div class="project-links">
+                                <a href="project-digital-display.html" title="View details">
+                                    <i class="fas fa-info-circle"></i>
+                                </a>
+                                <a href="#" title="Live demo">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                                <a href="#" title="GitHub">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="project-title">
+                            <span>📺</span>
+                            <h3>Digital Information Display System</h3>
+                        </div>
+                        <p class="project-description">Digital signage platform for managing announcements, schedules, and multimedia content across multiple displays.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">VB.Net</span>
+                            <span class="tech-tag">WPF</span>
+                            <span class="tech-tag">C#</span>
+                            <span class="tech-tag">MSSQL</span>
+                        </div>
+                        <div class="project-footer">
+                            <span><i class="fas fa-folder"></i> Digital Signage</span>
+                            <span><i class="fas fa-calendar"></i> 2023</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Real Estate Sales & Payment Management System -->
+                <div class="project-card">
+                    <a href="project-real-estate-sales.html" class="project-header-link">
+                        <div class="project-header" style="background: linear-gradient(90deg, #14b8a6, #3b82f6);"></div>
+                    </a>
                     <div class="project-content">
                         <div class="project-meta">
                             <span class="project-tag" style="background: #ccfbf1; color: #14b8a6;">Real Estate</span>
                             <div class="project-links">
-                                <a href="project-real-estate-sales.html" title="View details">
+                                <a href="project-real-estate-sales.html" title="View project details">
                                     <i class="fas fa-info-circle"></i>
                                 </a>
                                 <a href="#" title="Live demo">
@@ -808,6 +902,191 @@
                         <div class="project-footer">
                             <span><i class="fas fa-folder"></i> Real Estate</span>
                             <span><i class="fas fa-calendar"></i> 2023</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Inventory Management -->
+                <div class="project-card">
+                    <a href="#" class="project-header-link" title="Detail page coming soon">
+                        <div class="project-header" style="background: linear-gradient(90deg, #4f46e5, #9333ea);"></div>
+                    </a>
+                    <div class="project-content">
+                        <div class="project-meta">
+                            <span class="project-tag" style="background: #e0e7ff; color: #4f46e5;">Retail</span>
+                            <div class="project-links">
+                                <a href="#" title="View details">
+                                    <i class="fas fa-info-circle"></i>
+                                </a>
+                                <a href="#" title="Live demo">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                                <a href="#" title="GitHub">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="project-title">
+                            <span>📝</span>
+                            <h3>Inventory Management</h3>
+                        </div>
+                        <p class="project-description">Comprehensive multi-level sales and inventory management system for retail/distribution businesses with field sales and regional operations.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Asp.Net</span>
+                            <span class="tech-tag">C#</span>
+                            <span class="tech-tag">MSSQL</span>
+                        </div>
+                        <div class="project-footer">
+                            <span><i class="fas fa-folder"></i> Retail/Distribution</span>
+                            <span><i class="fas fa-calendar"></i> 2023</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Network Operations & Asset Management -->
+                <div class="project-card">
+                    <a href="#" class="project-header-link" title="Detail page coming soon">
+                        <div class="project-header" style="background: linear-gradient(90deg, #0891b2, #3b82f6);"></div>
+                    </a>
+                    <div class="project-content">
+                        <div class="project-meta">
+                            <span class="project-tag" style="background: #cffafe; color: #0891b2;">B2B/Telecom</span>
+                            <div class="project-links">
+                                <a href="#" title="View details">
+                                    <i class="fas fa-info-circle"></i>
+                                </a>
+                                <a href="#" title="Live demo">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                                <a href="#" title="GitHub">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="project-title">
+                            <span>🎬</span>
+                            <h3>Network Operations & Asset Management</h3>
+                        </div>
+                        <p class="project-description">B2B Satellite Network Operations & Asset Management Platform for VSAT and satellite communication systems with enterprise customers.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Asp.Net</span>
+                            <span class="tech-tag">C#</span>
+                            <span class="tech-tag">Node.JS</span>
+                            <span class="tech-tag">MSSQL</span>
+                        </div>
+                        <div class="project-footer">
+                            <span><i class="fas fa-folder"></i> B2B/Telecom</span>
+                            <span><i class="fas fa-calendar"></i> 2023</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Datacenter Visitor Management System -->
+                <div class="project-card">
+                    <a href="#" class="project-header-link" title="Detail page coming soon">
+                        <div class="project-header" style="background: linear-gradient(90deg, #dc2626, #ec4899);"></div>
+                    </a>
+                    <div class="project-content">
+                        <div class="project-meta">
+                            <span class="project-tag" style="background: #fee2e2; color: #dc2626;">Security</span>
+                            <div class="project-links">
+                                <a href="#" title="View details">
+                                    <i class="fas fa-info-circle"></i>
+                                </a>
+                                <a href="#" title="Live demo">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                                <a href="#" title="GitHub">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="project-title">
+                            <span>📊</span>
+                            <h3>Datacenter Visitor Management</h3>
+                        </div>
+                        <p class="project-description">Visitor management system that enforces pre-approved access, tracks entry/exit, and provides comprehensive audit reporting for compliance.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Asp.Net</span>
+                            <span class="tech-tag">C#</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">MSSQL</span>
+                        </div>
+                        <div class="project-footer">
+                            <span><i class="fas fa-folder"></i> Security/Access Control</span>
+                            <span><i class="fas fa-calendar"></i> 2023</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Starlink Integration Middleware -->
+                <div class="project-card">
+                    <div class="project-header" style="background: linear-gradient(90deg, #ca8a04, #ea580c);"></div>
+                    <div class="project-content">
+                        <div class="project-meta">
+                            <span class="project-tag" style="background: #fef3c7; color: #ca8a04;">API/Middleware</span>
+                            <div class="project-links">
+                                <a href="#" title="View details">
+                                    <i class="fas fa-info-circle"></i>
+                                </a>
+                                <a href="#" title="Live demo">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                                <a href="#" title="GitHub">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="project-title">
+                            <span>🍳</span>
+                            <h3>Starlink Integration Middleware</h3>
+                        </div>
+                        <p class="project-description">Custom-built middleware platform designed to bridge, automate, and unify Starlink satellite services within enterprise-grade VSAT operations.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Node.JS</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">NoSQL</span>
+                            <span class="tech-tag">MSSQL</span>
+                        </div>
+                        <div class="project-footer">
+                            <span><i class="fas fa-folder"></i> Integration Platform</span>
+                            <span><i class="fas fa-calendar"></i> 2024</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Real-Time Telegram Notifications & Reporting Module -->
+                <div class="project-card">
+                    <div class="project-header" style="background: linear-gradient(90deg, #3b82f6, #4f46e5);"></div>
+                    <div class="project-content">
+                        <div class="project-meta">
+                            <span class="project-tag" style="background: #dbeafe; color: #3b82f6;">Communication</span>
+                            <div class="project-links">
+                                <a href="#" title="View details">
+                                    <i class="fas fa-info-circle"></i>
+                                </a>
+                                <a href="#" title="Live demo">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                                <a href="#" title="GitHub">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="project-title">
+                            <span>🤖</span>
+                            <h3>Telegram Notifications & Reporting</h3>
+                        </div>
+                        <p class="project-description">User-facing interface and automation layer built on middleware - giving teams visibility, control, and comprehensive audit trails.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Node.JS</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">NoSQL</span>
+                            <span class="tech-tag">MSSQL</span>
+                        </div>
+                        <div class="project-footer">
+                            <span><i class="fas fa-folder"></i> Communication Platform</span>
+                            <span><i class="fas fa-calendar"></i> 2024</span>
                         </div>
                     </div>
                 </div>

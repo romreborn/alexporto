@@ -966,7 +966,7 @@
 
                 <!-- Campaign Text -->
                 <div class="screenshot-card" onclick="openModal('screenshots/digital_display/Tambah_RunningText - Campaign_Text.png')">
-                    <img src="screenshots/digital_display/Tambah_RunningText%20-%20Campaign_Text.png" alt="Campaign Text">
+                    <img src="screenshots/digital_display/Tambah_RunningText - Campaign_Text.png" alt="Campaign Text">
                     <div class="screenshot-overlay">
                         <div style="color: white; text-align: center;">
                             <i class="fas fa-search-plus" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
@@ -1151,6 +1151,7 @@
         <div id="caption" class="caption"></div>
     </div>
 
+    <script src="assets/js/gallery.js"></script>
     <script>
         // Mobile menu toggle
         const hamburger = document.getElementById('hamburger');
@@ -1173,12 +1174,12 @@
         const modal = document.getElementById('imageModal');
         const modalImg = document.getElementById('modalImage');
         const caption = document.getElementById('caption');
-        const closeModal = document.querySelector('.close');
+        const closeModal = document.getElementsByClassName("close")[0];
 
         function openModal(imageSrc) {
             modal.style.display = "block";
             modalImg.src = imageSrc;
-            caption.innerHTML = imageSrc.split('/').pop().replace('.png', '').replace(/_/g, ' ').replace(/%20/g, ' ');
+            caption.innerHTML = imageSrc.split('/').pop().replace('.png', '').replace(/_/g, ' ');
         }
 
         closeModal.onclick = function() {
